@@ -1,0 +1,4716 @@
+[
+    {
+        "name": "CPU Information",
+        "command": "lscpu",
+        "description": "Displays detailed information about the CPU architecture.",
+        "section": "System Information",
+        "output": "Architecture: x86_64\nCPU(s): 4\nModel name: Intel(R) Core(TM) i5-7300U CPU @ 2.60GHz",
+        "common_options": {
+            "-a": "Show all CPU information including offline CPUs",
+            "-b": "Show brief CPU information",
+            "-x": "Show CPU information in hex",
+            "-y": "Show physical CPU information only"
+        },
+        "examples": [
+            "lscpu | grep 'CPU MHz'",
+            "lscpu -e",
+            "lscpu -p"
+        ],
+        "related_commands": [
+            "cat /proc/cpuinfo",
+            "nproc",
+            "top",
+            "htop"
+        ],
+        "best_practices": [
+            "Use with grep to filter specific information",
+            "Combine with watch command for real-time monitoring",
+            "Save output to file for system documentation"
+        ]
+    },
+    {
+        "name": "Memory Usage",
+        "command": "free -h",
+        "description": "Shows memory usage in a human-readable format.",
+        "section": "System Information",
+        "output": " total used free shared buff/cache available\nMem: 7.8G 3.2G 1.5G 200M 3.1G 4.0G\nSwap: 2.0G 0B 2.0G",
+        "common_options": {
+            "-s": "Continuously display memory usage at specified intervals",
+            "-t": "Show a line with total memory"
+        },
+        "examples": [
+            "free -h",
+            "free -m",
+            "free -s 5"
+        ],
+        "related_commands": [
+            "vmstat",
+            "top"
+        ],
+        "best_practices": [
+            "Use with grep to filter specific values",
+            "Combine with watch for real-time updates"
+        ]
+    },
+    {
+        "name": "Kernel Version",
+        "command": "uname -r",
+        "description": "Displays the running kernel version.",
+        "section": "System Information",
+        "output": "5.15.0-67-generic",
+        "common_options": {
+            "--help": "Display help information"
+        },
+        "examples": [
+            "uname -r"
+        ],
+        "related_commands": [
+            "uname -a"
+        ],
+        "best_practices": [
+            "Use to verify the kernel version before performing updates"
+        ]
+    },
+    {
+        "name": "System Information",
+        "command": "uname -a",
+        "description": "Shows comprehensive system information.",
+        "section": "System Information",
+        "output": "Linux hostname 5.15.0-67-generic #74-Ubuntu SMP Thu Mar 16 18:20:18 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux",
+        "common_options": {
+            "-s": "Display the kernel name"
+        },
+        "examples": [
+            "uname -a"
+        ],
+        "related_commands": [
+            "hostnamectl"
+        ],
+        "best_practices": [
+            "Useful for debugging system details"
+        ]
+    },
+    {
+        "name": "Uptime",
+        "command": "uptime",
+        "description": "Shows how long the system has been running.",
+        "section": "System Information",
+        "output": "up 5 days, 3:23, 2 users, load average: 0.15, 0.10, 0.05",
+        "common_options": {
+            "-p": "Display uptime in a pretty format"
+        },
+        "examples": [
+            "uptime",
+            "uptime -p"
+        ],
+        "related_commands": [
+            "top",
+            "w"
+        ],
+        "best_practices": [
+            "Use in scripts to monitor system availability",
+            "Combine with other commands for load monitoring"
+        ]
+    },
+    {
+        "name": "Dmesg",
+        "command": "dmesg | less",
+        "description": "Displays kernel ring buffer messages.",
+        "section": "System Information",
+        "output": "Boot messages and kernel logs...",
+        "common_options": {
+            "-T": "Print human readable timestamps",
+            "--follow": "Continuously display new messages"
+        },
+        "examples": [
+            "dmesg",
+            "dmesg -T",
+            "dmesg | grep error"
+        ],
+        "related_commands": [
+            "journalctl -k",
+            "tail -f /var/log/syslog"
+        ],
+        "best_practices": [
+            "Use with grep to filter for specific errors",
+            "Avoid running as root if not necessary"
+        ]
+    },
+    {
+        "name": "Operating System Release",
+        "command": "cat /etc/os-release",
+        "description": "Displays OS release information.",
+        "section": "System Information",
+        "output": "NAME=\"Ubuntu\"\nVERSION=\"20.04.1 LTS (Focal Fossa)\"",
+        "common_options": {},
+        "examples": [
+            "cat /etc/os-release"
+        ],
+        "related_commands": [
+            "lsb_release -a",
+            "hostnamectl"
+        ],
+        "best_practices": [
+            "Useful for scripts to detect the operating system type",
+            "Check OS version for compatibility before installation"
+        ]
+    },
+    {
+        "name": "Hardware Info",
+        "command": "lshw -short",
+        "description": "Lists hardware in short format.",
+        "section": "System Information",
+        "output": "Sample hardware information output.",
+        "common_options": {
+            "-html": "Output in HTML format",
+            "-json": "Output in JSON format"
+        },
+        "examples": [
+            "lshw -short",
+            "lshw -html"
+        ],
+        "related_commands": [
+            "lscpu",
+            "dmidecode"
+        ],
+        "best_practices": [
+            "Run as root for complete information",
+            "Use grep to filter relevant hardware details"
+        ]
+    },
+    {
+        "name": "BIOS Information",
+        "command": "dmidecode -t bios",
+        "description": "Displays BIOS information.",
+        "section": "System Information",
+        "output": "BIOS Vendor, Version, Release Date, etc.",
+        "common_options": {
+            "-t": "Specifies the DMI type to display",
+            "-q": "Quiet mode; only displays errors"
+        },
+        "examples": [
+            "dmidecode -t bios"
+        ],
+        "related_commands": [
+            "lshw",
+            "dmesg"
+        ],
+        "best_practices": [
+            "Run as root to access BIOS data",
+            "Check BIOS version before firmware updates"
+        ]
+    },
+    {
+        "name": "List Environment Variables",
+        "command": "printenv",
+        "description": "Lists all environment variables.",
+        "section": "System Information",
+        "output": "List of environment variables.",
+        "common_options": {
+            "-0": "Separate output with null characters"
+        },
+        "examples": [
+            "printenv",
+            "printenv PATH"
+        ],
+        "related_commands": [
+            "env",
+            "set"
+        ],
+        "best_practices": [
+            "Useful for debugging environment issues",
+            "Combine with grep to filter specific variables"
+        ]
+    },
+    {
+        "name": "Show Date and Time",
+        "command": "date",
+        "description": "Displays current date and time.",
+        "section": "System Information",
+        "output": "Mon Feb 09 12:34:56 UTC 2025",
+        "common_options": {
+            "+FORMAT": "Customize output format, e.g., date '+%Y-%m-%d'"
+        },
+        "examples": [
+            "date",
+            "date '+%A, %B %d, %Y'"
+        ],
+        "related_commands": [
+            "cal",
+            "hwclock"
+        ],
+        "best_practices": [
+            "Use in scripts to timestamp logs",
+            "Ensure system time is correct for time-sensitive operations"
+        ]
+    },
+    {
+        "name": "Show Calendar",
+        "command": "cal",
+        "description": "Displays a calendar.",
+        "section": "System Information",
+        "output": "Calendar output.",
+        "common_options": {
+            "-3": "Display three months",
+            "-y": "Display the whole year"
+        },
+        "examples": [
+            "cal",
+            "cal -3",
+            "cal 2025"
+        ],
+        "related_commands": [
+            "date"
+        ],
+        "best_practices": [
+            "Useful for quickly viewing a month's layout",
+            "Combine with date utilities for scheduling"
+        ]
+    },
+    {
+        "name": "List USB Devices",
+        "command": "lsusb",
+        "description": "Lists USB devices.",
+        "section": "System Information",
+        "output": "List of connected USB devices.",
+        "common_options": {
+            "-v": "Show detailed information",
+            "-t": "Display in tree format"
+        },
+        "examples": [
+            "lsusb",
+            "lsusb -v",
+            "lsusb -t"
+        ],
+        "related_commands": [
+            "lspci",
+            "dmesg"
+        ],
+        "best_practices": [
+            "Run as root for detailed device info",
+            "Use grep to filter specific devices"
+        ]
+    },
+    {
+        "name": "List PCI Devices",
+        "command": "lspci",
+        "description": "Lists all PCI devices.",
+        "section": "System Information",
+        "output": "List of PCI devices.",
+        "common_options": {
+            "-v": "Verbose output",
+            "-nn": "Show numeric IDs",
+            "-k": "Show kernel driver information"
+        },
+        "examples": [
+            "lspci",
+            "lspci -nn",
+            "lspci -k"
+        ],
+        "related_commands": [
+            "lsusb",
+            "dmidecode"
+        ],
+        "best_practices": [
+            "Useful for diagnosing hardware issues",
+            "Combine with grep to locate specific devices"
+        ]
+    },
+    {
+        "name": "List Running Processes",
+        "command": "ps aux",
+        "description": "Lists all running processes with detailed information.",
+        "section": "Process Management",
+        "output": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 22560  4100 ?        Ss   Mar14   0:02 /sbin/init",
+        "common_options": {
+            "a": "Display processes for all users",
+            "u": "Display in user-oriented format",
+            "x": "Include processes without a controlling terminal"
+        },
+        "examples": [
+            "ps aux",
+            "ps aux | grep firefox"
+        ],
+        "related_commands": [
+            "top",
+            "htop",
+            "pgrep"
+        ],
+        "best_practices": [
+            "Pipe output to grep for filtering",
+            "Use in scripts for process monitoring"
+        ]
+    },
+    {
+        "name": "Interactive Process Viewer",
+        "command": "top",
+        "description": "Provides a real-time view of system processes and resource usage.",
+        "section": "Process Management",
+        "output": "top - 12:34:56 up 1:23, 2 users, load average: 0.00, 0.01, 0.05\nTasks: 123 total, 1 running, 122 sleeping, 0 stopped, 0 zombie",
+        "common_options": {
+            "-d": "Set delay time between updates",
+            "-n": "Specify number of iterations"
+        },
+        "examples": [
+            "top",
+            "top -d 2",
+            "top -n 5"
+        ],
+        "related_commands": [
+            "htop",
+            "ps"
+        ],
+        "best_practices": [
+            "Press 'q' to exit",
+            "Use for real-time performance monitoring"
+        ]
+    },
+    {
+        "name": "Enhanced Process Viewer",
+        "command": "htop",
+        "description": "An improved interactive process viewer with a user-friendly interface.",
+        "section": "Process Management",
+        "output": "htop version 3.0.5 - (C) 2004-2021 Hisham Muhammad",
+        "common_options": {
+            "-d": "Set delay time between updates",
+            "-u": "Filter processes by user"
+        },
+        "examples": [
+            "htop",
+            "htop -u username"
+        ],
+        "related_commands": [
+            "top",
+            "ps"
+        ],
+        "best_practices": [
+            "Use arrow keys to navigate",
+            "Press F2 for setup/configuration options"
+        ]
+    },
+    {
+        "name": "Process Tree",
+        "command": "pstree",
+        "description": "Displays processes in a tree structure.",
+        "section": "Process Management",
+        "output": "Tree structure of processes...",
+        "common_options": {
+            "-p": "Show process IDs",
+            "-u": "Display user information"
+        },
+        "examples": [
+            "pstree",
+            "pstree -p",
+            "pstree -u"
+        ],
+        "related_commands": [
+            "ps",
+            "top"
+        ],
+        "best_practices": [
+            "Use for visualizing process hierarchy",
+            "Combine with grep to search for a specific process"
+        ]
+    },
+    {
+        "name": "Kill Process",
+        "command": "kill <PID>",
+        "description": "Terminates a process with the given PID.",
+        "section": "Process Management",
+        "output": "No output on success.",
+        "common_options": {
+            "-s": "Specify the signal to send (default is TERM)"
+        },
+        "examples": [
+            "kill 1234",
+            "kill -9 1234"
+        ],
+        "related_commands": [
+            "pkill",
+            "killall"
+        ],
+        "best_practices": [
+            "Verify the PID before terminating",
+            "Prefer sending TERM before KILL signal"
+        ]
+    },
+    {
+        "name": "Kill Process by Name",
+        "command": "pkill firefox",
+        "description": "Terminates processes by name.",
+        "section": "Process Management",
+        "output": "No output on success.",
+        "common_options": {
+            "-f": "Match against the full command line",
+            "-9": "Force kill"
+        },
+        "examples": [
+            "pkill firefox",
+            "pkill -9 firefox"
+        ],
+        "related_commands": [
+            "killall",
+            "pgrep"
+        ],
+        "best_practices": [
+            "Ensure no unintended processes are terminated",
+            "Use with caution on production systems"
+        ]
+    },
+    {
+        "name": "Kill All Instances",
+        "command": "killall chrome",
+        "description": "Terminates all processes with the given name.",
+        "section": "Process Management",
+        "output": "No output on success.",
+        "common_options": {
+            "-I": "Ignore case",
+            "-v": "Verbose output"
+        },
+        "examples": [
+            "killall chrome",
+            "killall -I chrome"
+        ],
+        "related_commands": [
+            "pkill",
+            "kill"
+        ],
+        "best_practices": [
+            "Check running processes before mass termination",
+            "Useful for closing multiple instances quickly"
+        ]
+    },
+    {
+        "name": "Change Process Priority",
+        "command": "renice +5 <PID>",
+        "description": "Increases the nice value of a process.",
+        "section": "Process Management",
+        "output": "No output on success.",
+        "common_options": {
+            "-n": "Specify the nice value",
+            "-p": "Specify the PID"
+        },
+        "examples": [
+            "renice +5 1234",
+            "renice -n 10 -p 1234"
+        ],
+        "related_commands": [
+            "nice",
+            "ps"
+        ],
+        "best_practices": [
+            "Requires appropriate permissions",
+            "Check current priority before modifying"
+        ]
+    },
+    {
+        "name": "Background Process",
+        "command": "bg",
+        "description": "Resumes a suspended process in the background.",
+        "section": "Process Management",
+        "output": "Process resumed in background.",
+        "common_options": {
+            "": "No options; resumes the most recent job by default"
+        },
+        "examples": [
+            "bg",
+            "bg %1"
+        ],
+        "related_commands": [
+            "fg",
+            "jobs"
+        ],
+        "best_practices": [
+            "Ensure job control is enabled",
+            "Use 'jobs' to view suspended tasks"
+        ]
+    },
+    {
+        "name": "Foreground Process",
+        "command": "fg",
+        "description": "Brings a background process to the foreground.",
+        "section": "Process Management",
+        "output": "Process brought to foreground.",
+        "common_options": {
+            "": "No options; brings job to foreground"
+        },
+        "examples": [
+            "fg",
+            "fg %1"
+        ],
+        "related_commands": [
+            "bg",
+            "jobs"
+        ],
+        "best_practices": [
+            "Use with job IDs from 'jobs'",
+            "Helps resume suspended processes"
+        ]
+    },
+    {
+        "name": "List Jobs",
+        "command": "jobs",
+        "description": "Lists background jobs.",
+        "section": "Process Management",
+        "output": "[1]+ Running command &",
+        "common_options": {
+            "-l": "Display process IDs",
+            "-n": "Show only jobs that have changed status"
+        },
+        "examples": [
+            "jobs",
+            "jobs -l"
+        ],
+        "related_commands": [
+            "ps",
+            "fg",
+            "bg"
+        ],
+        "best_practices": [
+            "Useful for tracking background and suspended jobs",
+            "Combine with fg/bg to manage processes"
+        ]
+    },
+    {
+        "name": "Suspend Process",
+        "command": "Ctrl+Z",
+        "description": "Suspends a running process.",
+        "section": "Process Management",
+        "output": "Process suspended.",
+        "common_options": {
+            "": "This is a keyboard shortcut, not a command option"
+        },
+        "examples": [
+            "Press Ctrl+Z in the terminal"
+        ],
+        "related_commands": [
+            "bg",
+            "fg",
+            "kill"
+        ],
+        "best_practices": [
+            "Use to temporarily pause a process",
+            "Then use 'bg' to resume in background or 'fg' to resume in foreground"
+        ]
+    },
+    {
+        "name": "Monitor Processes with watch",
+        "command": "watch -n 1 'ps aux'",
+        "description": "Continuously displays processes.",
+        "section": "Process Management",
+        "output": "Refreshing process list.",
+        "common_options": {
+            "-n": "Set interval in seconds",
+            "-d": "Highlight differences between updates"
+        },
+        "examples": [
+            "watch -n 1 'ps aux'",
+            "watch -d 'ps aux'"
+        ],
+        "related_commands": [
+            "top",
+            "ps"
+        ],
+        "best_practices": [
+            "Useful for real-time process monitoring",
+            "Ensure correct quoting of commands"
+        ]
+    },
+    {
+        "name": "Show Process Memory Usage",
+        "command": "pmap <PID>",
+        "description": "Shows memory map of a process.",
+        "section": "Process Management",
+        "output": "Memory map output.",
+        "common_options": {
+            "-x": "Display extended format"
+        },
+        "examples": [
+            "pmap 1234",
+            "pmap -x 1234"
+        ],
+        "related_commands": [
+            "ps",
+            "top"
+        ],
+        "best_practices": [
+            "Use to inspect memory consumption of a process",
+            "Requires specifying a valid PID"
+        ]
+    },
+    {
+        "name": "List Child Processes",
+        "command": "pgrep -P <parent_PID>",
+        "description": "Lists child processes of a given process.",
+        "section": "Process Management",
+        "output": "Child process IDs.",
+        "common_options": {
+            "-l": "List processes with names"
+        },
+        "examples": [
+            "pgrep -P 1234",
+            "pgrep -l -P 1234"
+        ],
+        "related_commands": [
+            "ps",
+            "pstree"
+        ],
+        "best_practices": [
+            "Use to find subprocesses of a given process",
+            "Combine with other options for detailed output"
+        ]
+    },
+    {
+        "name": "Check Disk Usage",
+        "command": "df -h",
+        "description": "Displays disk space usage in a human-readable format.",
+        "section": "Disk & Filesystem",
+        "output": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/sda1       100G   50G   50G  50% /",
+        "common_options": {
+            "-h": "Display sizes in human-readable format",
+            "-T": "Show filesystem type"
+        },
+        "examples": [
+            "df -h",
+            "df -Th"
+        ],
+        "related_commands": [
+            "du",
+            "lsblk"
+        ],
+        "best_practices": [
+            "Monitor available disk space regularly",
+            "Combine with grep to check specific mount points"
+        ]
+    },
+    {
+        "name": "Check Folder Size",
+        "command": "du -sh *",
+        "description": "Shows the size of each directory in the current folder.",
+        "section": "Disk & Filesystem",
+        "output": "4.0K folder1\n12K folder2",
+        "common_options": {
+            "-s": "Display summary for each argument",
+            "-h": "Human-readable format"
+        },
+        "examples": [
+            "du -sh *",
+            "du -sh /path/to/directory/*"
+        ],
+        "related_commands": [
+            "df",
+            "ncdu"
+        ],
+        "best_practices": [
+            "Quickly assess folder sizes",
+            "Combine with sort to identify largest directories"
+        ]
+    },
+    {
+        "name": "List Block Devices",
+        "command": "lsblk",
+        "description": "Lists all block devices.",
+        "section": "Disk & Filesystem",
+        "output": "NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT\nsda      8:0    0 100G  0 disk\n└─sda1   8:1    0 100G  0 part /",
+        "common_options": {
+            "-f": "Output file system information",
+            "-o": "Specify columns to display"
+        },
+        "examples": [
+            "lsblk",
+            "lsblk -f",
+            "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT"
+        ],
+        "related_commands": [
+            "fdisk -l",
+            "df"
+        ],
+        "best_practices": [
+            "Useful for viewing storage layout",
+            "Run with sudo for additional details if needed"
+        ]
+    },
+    {
+        "name": "Partition Table",
+        "command": "fdisk -l",
+        "description": "Displays partition tables.",
+        "section": "Disk & Filesystem",
+        "output": "Disk /dev/sda: 100 GiB, ...\nPartition table:\n...",
+        "common_options": {
+            "-l": "List partition tables"
+        },
+        "examples": [
+            "fdisk -l",
+            "sudo fdisk -l"
+        ],
+        "related_commands": [
+            "lsblk",
+            "parted -l"
+        ],
+        "best_practices": [
+            "Run as root for complete partition info",
+            "Useful for diagnosing disk partition issues"
+        ]
+    },
+    {
+        "name": "Mount Filesystem",
+        "command": "mount /dev/sda1 /mnt",
+        "description": "Mounts a filesystem.",
+        "section": "Disk & Filesystem",
+        "output": "No output on success.",
+        "common_options": {
+            "-t": "Specify filesystem type",
+            "-o": "Specify mount options"
+        },
+        "examples": [
+            "mount /dev/sda1 /mnt",
+            "mount -t ext4 /dev/sda1 /mnt"
+        ],
+        "related_commands": [
+            "umount",
+            "df -h"
+        ],
+        "best_practices": [
+            "Ensure the mount point exists before mounting",
+            "Unmount properly before system shutdown"
+        ]
+    },
+    {
+        "name": "Unmount Filesystem",
+        "command": "umount /mnt",
+        "description": "Unmounts a mounted filesystem.",
+        "section": "Disk & Filesystem",
+        "output": "No output on success.",
+        "common_options": {
+            "-l": "Perform a lazy unmount",
+            "-f": "Force unmount"
+        },
+        "examples": [
+            "umount /mnt",
+            "umount -l /mnt"
+        ],
+        "related_commands": [
+            "mount",
+            "df -h"
+        ],
+        "best_practices": [
+            "Ensure no processes are using the filesystem",
+            "Use with caution to avoid data loss"
+        ]
+    },
+    {
+        "name": "Check Disk Health",
+        "command": "smartctl -a /dev/sda",
+        "description": "Displays SMART info for the disk.",
+        "section": "Disk & Filesystem",
+        "output": "SMART data output.",
+        "common_options": {
+            "-a": "Display all SMART information",
+            "-H": "Perform a health check"
+        },
+        "examples": [
+            "smartctl -a /dev/sda",
+            "smartctl -H /dev/sda"
+        ],
+        "related_commands": [
+            "fdisk -l",
+            "df -h"
+        ],
+        "best_practices": [
+            "Requires sudo permissions",
+            "Run periodically to monitor disk health"
+        ]
+    },
+    {
+        "name": "File System Check",
+        "command": "fsck /dev/sda1",
+        "description": "Checks and repairs the filesystem.",
+        "section": "Disk & Filesystem",
+        "output": "Filesystem status report.",
+        "common_options": {
+            "-y": "Automatically repair detected issues",
+            "-n": "Dry-run mode (no changes made)"
+        },
+        "examples": [
+            "fsck /dev/sda1",
+            "fsck -y /dev/sda1"
+        ],
+        "related_commands": [
+            "mount",
+            "smartctl"
+        ],
+        "best_practices": [
+            "Unmount the filesystem before running fsck",
+            "Back up data before performing repairs"
+        ]
+    },
+    {
+        "name": "View Disk I/O",
+        "command": "iostat",
+        "description": "Displays CPU and I/O statistics.",
+        "section": "Disk & Filesystem",
+        "output": "iostat output with I/O stats.",
+        "common_options": {
+            "-x": "Display extended statistics",
+            "-d": "Display device utilization"
+        },
+        "examples": [
+            "iostat",
+            "iostat -x",
+            "iostat -d 2"
+        ],
+        "related_commands": [
+            "vmstat",
+            "sar"
+        ],
+        "best_practices": [
+            "Install the sysstat package if not available",
+            "Use over time to identify performance bottlenecks"
+        ]
+    },
+    {
+        "name": "Disk Usage Analyzer",
+        "command": "ncdu",
+        "description": "Provides an interactive disk usage summary.",
+        "section": "Disk & Filesystem",
+        "output": "ncdu interactive interface.",
+        "common_options": {
+            "-x": "Do not cross filesystem boundaries"
+        },
+        "examples": [
+            "ncdu",
+            "ncdu /home"
+        ],
+        "related_commands": [
+            "du",
+            "df"
+        ],
+        "best_practices": [
+            "Run as root for a complete scan",
+            "Useful for identifying large directories to free up space"
+        ]
+    },
+    {
+        "name": "Show Disk Free Inodes",
+        "command": "df -i",
+        "description": "Displays inode usage.",
+        "section": "Disk & Filesystem",
+        "output": "Inode usage output.",
+        "common_options": {
+            "-i": "Display inode usage"
+        },
+        "examples": [
+            "df -i"
+        ],
+        "related_commands": [
+            "df -h"
+        ],
+        "best_practices": [
+            "Use when suspecting inode exhaustion",
+            "Combine with df to check overall disk usage"
+        ]
+    },
+    {
+        "name": "Find Large Files",
+        "command": "find / -type f -size +100M",
+        "description": "Finds files larger than 100MB.",
+        "section": "Disk & Filesystem",
+        "output": "List of large files.",
+        "common_options": {
+            "-type": "Specify file type",
+            "-size": "Filter by file size"
+        },
+        "examples": [
+            "find / -type f -size +100M",
+            "find /home -type f -size +100M"
+        ],
+        "related_commands": [
+            "du",
+            "ls"
+        ],
+        "best_practices": [
+            "Run as root to search all directories",
+            "Combine with sort to list the largest files"
+        ]
+    },
+    {
+        "name": "Monitor File Changes",
+        "command": "inotifywait -m /path",
+        "description": "Watches for file changes in a directory.",
+        "section": "Disk & Filesystem",
+        "output": "Real-time file change events.",
+        "common_options": {
+            "-m": "Monitor continuously",
+            "-r": "Recursively watch directories"
+        },
+        "examples": [
+            "inotifywait -m /path",
+            "inotifywait -mr /path"
+        ],
+        "related_commands": [
+            "inotifywatch",
+            "ls"
+        ],
+        "best_practices": [
+            "Useful for debugging file system events",
+            "Ensure inotify-tools are installed"
+        ]
+    },
+    {
+        "name": "File Size",
+        "command": "du -h file.txt",
+        "description": "Displays disk usage of a specific file.",
+        "section": "Disk & Filesystem",
+        "output": "File size in human-readable format.",
+        "common_options": {
+            "-h": "Display sizes in human-readable format"
+        },
+        "examples": [
+            "du -h file.txt"
+        ],
+        "related_commands": [
+            "ls -lh",
+            "stat"
+        ],
+        "best_practices": [
+            "Use to quickly check the size of a file",
+            "Combine with sort for multiple files"
+        ]
+    },
+    {
+        "name": "Network Config (ifconfig)",
+        "command": "ifconfig",
+        "description": "Displays network interface configuration on older systems.",
+        "section": "Networking",
+        "output": "eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500\n    inet 192.168.1.100  netmask 255.255.255.0  broadcast 192.168.1.255",
+        "common_options": {
+            "-a": "Display all interfaces, including inactive ones"
+        },
+        "examples": [
+            "ifconfig",
+            "ifconfig -a"
+        ],
+        "related_commands": [
+            "ip a",
+            "iwconfig"
+        ],
+        "best_practices": [
+            "Ifconfig is deprecated on many systems; consider using 'ip'",
+            "Run with sudo for full details"
+        ]
+    },
+    {
+        "name": "Network Info (ip)",
+        "command": "ip a",
+        "description": "Shows detailed network interface information.",
+        "section": "Networking",
+        "output": "2: enp3s0: <BROADCAST,MULTICAST,UP,LOWER_UP>  mtu 1500  qdisc pfifo_fast  state UP  group default  qlen 1000\n    inet 192.168.1.100/24  brd 192.168.1.255  scope global dynamic  enp3s0",
+        "common_options": {
+            "a": "Show all interfaces",
+            "o": "Output in a single-line format"
+        },
+        "examples": [
+            "ip a",
+            "ip -o a"
+        ],
+        "related_commands": [
+            "ifconfig",
+            "ip link"
+        ],
+        "best_practices": [
+            "Provides more detailed info than ifconfig",
+            "Useful for scripting network configurations"
+        ]
+    },
+    {
+        "name": "Download File",
+        "command": "wget http://example.com/file",
+        "description": "Downloads a file from the specified URL using wget.",
+        "section": "Networking",
+        "output": "--2025-02-09 12:34:56--  http://example.com/file\nResolving example.com (example.com)... 93.184.216.34\nConnecting to example.com (example.com)|93.184.216.34|:80... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 12345 (12K) [application/octet-stream]\nSaving to: 'file'",
+        "common_options": {
+            "-O": "Specify output file name",
+            "--limit-rate": "Limit download speed"
+        },
+        "examples": [
+            "wget http://example.com/file",
+            "wget -O myfile http://example.com/file"
+        ],
+        "related_commands": [
+            "curl",
+            "ftp"
+        ],
+        "best_practices": [
+            "Verify the URL before downloading",
+            "Ensure you have write permissions in the destination directory"
+        ]
+    },
+    {
+        "name": "HTTP Request with Curl",
+        "command": "curl http://example.com",
+        "description": "Performs an HTTP request using curl.",
+        "section": "Networking",
+        "output": "<!doctype html>\n<html>\n<head>\n<title>Example Domain</title>\n...</head>\n<body>...</body>\n</html>",
+        "common_options": {
+            "-I": "Fetch headers only",
+            "-L": "Follow redirects",
+            "-o": "Output to a file"
+        },
+        "examples": [
+            "curl http://example.com",
+            "curl -I http://example.com",
+            "curl -L http://example.com"
+        ],
+        "related_commands": [
+            "wget",
+            "httpie"
+        ],
+        "best_practices": [
+            "Use -L to follow redirects",
+            "Combine with grep to filter HTTP headers"
+        ]
+    },
+    {
+        "name": "Ping",
+        "command": "ping google.com",
+        "description": "Sends ICMP echo requests.",
+        "section": "Networking",
+        "output": "PING google.com (172.217.11.46) 56(84) bytes of data...",
+        "common_options": {
+            "-c": "Specify the number of packets to send",
+            "-i": "Set interval between packets"
+        },
+        "examples": [
+            "ping google.com",
+            "ping -c 4 google.com"
+        ],
+        "related_commands": [
+            "traceroute",
+            "mtr"
+        ],
+        "best_practices": [
+            "Use -c to limit the number of packets",
+            "Useful for basic network connectivity testing"
+        ]
+    },
+    {
+        "name": "Traceroute",
+        "command": "traceroute google.com",
+        "description": "Shows the route packets take to a network host.",
+        "section": "Networking",
+        "output": "Traceroute output with hops.",
+        "common_options": {
+            "-m": "Set the maximum number of hops",
+            "-q": "Set the number of probe packets per hop"
+        },
+        "examples": [
+            "traceroute google.com",
+            "traceroute -m 30 google.com"
+        ],
+        "related_commands": [
+            "ping",
+            "mtr"
+        ],
+        "best_practices": [
+            "Run as root for complete information",
+            "Useful for diagnosing network routing issues"
+        ]
+    },
+    {
+        "name": "Netstat",
+        "command": "netstat -tuln",
+        "description": "Displays listening ports and active connections.",
+        "section": "Networking",
+        "output": "Active Internet connections (only servers)...",
+        "common_options": {
+            "-t": "TCP connections",
+            "-u": "UDP connections",
+            "-l": "Listening ports",
+            "-n": "Numeric addresses"
+        },
+        "examples": [
+            "netstat -tuln",
+            "netstat -an"
+        ],
+        "related_commands": [
+            "ss",
+            "lsof -i"
+        ],
+        "best_practices": [
+            "Use on servers to check open ports",
+            "Combine with grep to filter results"
+        ]
+    },
+    {
+        "name": "SS",
+        "command": "ss -tulw",
+        "description": "Displays socket statistics.",
+        "section": "Networking",
+        "output": "Socket statistics output.",
+        "common_options": {
+            "-t": "TCP sockets",
+            "-u": "UDP sockets",
+            "-l": "Listening sockets",
+            "-w": "Wide output"
+        },
+        "examples": [
+            "ss -tulw",
+            "ss -s"
+        ],
+        "related_commands": [
+            "netstat",
+            "lsof -i"
+        ],
+        "best_practices": [
+            "Modern alternative to netstat",
+            "Provides detailed socket statistics"
+        ]
+    },
+    {
+        "name": "DNS Lookup",
+        "command": "dig example.com",
+        "description": "Performs a DNS lookup for a domain.",
+        "section": "Networking",
+        "output": ";; ANSWER SECTION:\nexample.com. 86400 IN A 93.184.216.34",
+        "common_options": {
+            "+short": "Display concise output",
+            "+noall": "Suppress all sections except the answer"
+        },
+        "examples": [
+            "dig example.com",
+            "dig +short example.com"
+        ],
+        "related_commands": [
+            "host",
+            "nslookup"
+        ],
+        "best_practices": [
+            "Use +short for simplified results",
+            "Helpful for troubleshooting DNS issues"
+        ]
+    },
+    {
+        "name": "Hostname Lookup",
+        "command": "host example.com",
+        "description": "Finds IP addresses for a domain.",
+        "section": "Networking",
+        "output": "example.com has address 93.184.216.34",
+        "common_options": {},
+        "examples": [
+            "host example.com",
+            "host -t A example.com"
+        ],
+        "related_commands": [
+            "dig",
+            "nslookup"
+        ],
+        "best_practices": [
+            "Quick way to resolve domain names",
+            "Useful for verifying DNS configuration"
+        ]
+    },
+    {
+        "name": "Route Display",
+        "command": "route -n",
+        "description": "Displays the kernel routing table.",
+        "section": "Networking",
+        "output": "Kernel IP routing table:\n...",
+        "common_options": {
+            "-n": "Display numeric output",
+            "-F": "Show routing table with flags"
+        },
+        "examples": [
+            "route -n",
+            "route -F"
+        ],
+        "related_commands": [
+            "ip route",
+            "netstat -rn"
+        ],
+        "best_practices": [
+            "Useful for checking gateway settings",
+            "Combine with 'ip route' for detailed routing info"
+        ]
+    },
+    {
+        "name": "Iptables List",
+        "command": "sudo iptables -L",
+        "description": "Lists all firewall rules.",
+        "section": "Networking",
+        "output": "Chain INPUT (policy ACCEPT)...",
+        "common_options": {
+            "-L": "List all rules",
+            "-v": "Verbose output",
+            "-n": "Numeric output"
+        },
+        "examples": [
+            "sudo iptables -L",
+            "sudo iptables -L -v -n"
+        ],
+        "related_commands": [
+            "ufw status",
+            "firewalld"
+        ],
+        "best_practices": [
+            "Run with sudo to see all rules",
+            "Useful for troubleshooting firewall configurations"
+        ]
+    },
+    {
+        "name": "Network Monitor",
+        "command": "iftop",
+        "description": "Displays bandwidth usage on an interface.",
+        "section": "Networking",
+        "output": "iftop bandwidth usage output.",
+        "common_options": {
+            "-i": "Specify the network interface",
+            "-n": "Don't resolve hostnames"
+        },
+        "examples": [
+            "iftop",
+            "sudo iftop -i eth0"
+        ],
+        "related_commands": [
+            "nethogs",
+            "iptraf"
+        ],
+        "best_practices": [
+            "Requires root privileges for accurate monitoring",
+            "Use to identify high bandwidth usage in real-time"
+        ]
+    },
+    {
+        "name": "Monitor Network Traffic",
+        "command": "nethogs",
+        "description": "Monitors per-process network traffic.",
+        "section": "Networking",
+        "output": "nethogs output with processes and bandwidth.",
+        "common_options": {},
+        "examples": [
+            "nethogs",
+            "sudo nethogs eth0"
+        ],
+        "related_commands": [
+            "iftop",
+            "iptraf"
+        ],
+        "best_practices": [
+            "Run as root for accurate process-level monitoring",
+            "Use to identify applications using excessive bandwidth"
+        ]
+    },
+    {
+        "name": "Show Routing Table",
+        "command": "ip route show",
+        "description": "Displays the IP routing table.",
+        "section": "Networking",
+        "output": "Routing table output.",
+        "common_options": {},
+        "examples": [
+            "ip route show",
+            "ip route"
+        ],
+        "related_commands": [
+            "route",
+            "netstat -rn"
+        ],
+        "best_practices": [
+            "Provides detailed routing information",
+            "Useful for diagnosing connectivity issues"
+        ]
+    },
+    {
+        "name": "Capture Packets",
+        "command": "tcpdump -i eth0",
+        "description": "Captures packets on interface eth0.",
+        "section": "Networking",
+        "output": "Packet capture output.",
+        "common_options": {
+            "-i": "Specify network interface",
+            "-nn": "Do not resolve hostnames or ports",
+            "-c": "Limit the number of packets captured"
+        },
+        "examples": [
+            "tcpdump -i eth0",
+            "tcpdump -i eth0 -nn -c 100"
+        ],
+        "related_commands": [
+            "wireshark",
+            "tshark"
+        ],
+        "best_practices": [
+            "Run as root",
+            "Use filters to capture only relevant traffic"
+        ]
+    },
+    {
+        "name": "Check Open Ports",
+        "command": "nmap -sT localhost",
+        "description": "Scans for open TCP ports on the local machine.",
+        "section": "Networking",
+        "output": "List of open ports.",
+        "common_options": {
+            "-sT": "TCP connect scan",
+            "-p": "Specify port range"
+        },
+        "examples": [
+            "nmap -sT localhost",
+            "nmap -sT -p 1-65535 localhost"
+        ],
+        "related_commands": [
+            "netstat",
+            "ss"
+        ],
+        "best_practices": [
+            "Run with appropriate permissions",
+            "Useful for security audits"
+        ]
+    },
+    {
+        "name": "Show Wireless Networks",
+        "command": "nmcli device wifi list",
+        "description": "Lists available Wi-Fi networks.",
+        "section": "Networking",
+        "output": "Wi-Fi networks list.",
+        "common_options": {},
+        "examples": [
+            "nmcli device wifi list",
+            "nmcli d wifi list"
+        ],
+        "related_commands": [
+            "iwlist",
+            "nmcli device status"
+        ],
+        "best_practices": [
+            "Ensure wireless drivers are installed",
+            "Useful for troubleshooting Wi-Fi connectivity"
+        ]
+    },
+    {
+        "name": "Test Network Speed",
+        "command": "speedtest-cli",
+        "description": "Tests network bandwidth.",
+        "section": "Networking",
+        "output": "Download and upload speeds.",
+        "common_options": {},
+        "examples": [
+            "speedtest-cli",
+            "speedtest-cli --simple"
+        ],
+        "related_commands": [
+            "iperf",
+            "fast"
+        ],
+        "best_practices": [
+            "Run from a wired connection for best results",
+            "Use periodically to monitor bandwidth performance"
+        ]
+    },
+    {
+        "name": "Find Files",
+        "command": "find . -name 'filename'",
+        "description": "Searches for files named 'filename' in the current directory and subdirectories.",
+        "section": "File & Search",
+        "output": "./path/to/filename",
+        "common_options": {
+            "-name": "Pattern to match file names",
+            "-type": "Specify file type"
+        },
+        "examples": [
+            "find . -name 'filename'",
+            "find / -name 'myfile.txt'"
+        ],
+        "related_commands": [
+            "locate",
+            "grep"
+        ],
+        "best_practices": [
+            "Use quotes around the filename pattern",
+            "Combine with -type to filter results"
+        ]
+    },
+    {
+        "name": "Search Within Files",
+        "command": "grep 'pattern' file",
+        "description": "Searches for a specific pattern within a file.",
+        "section": "File & Search",
+        "output": "123:This line contains pattern.",
+        "common_options": {
+            "-i": "Case-insensitive search",
+            "-R": "Recursive search",
+            "-n": "Show line numbers"
+        },
+        "examples": [
+            "grep 'pattern' file",
+            "grep -in 'pattern' file",
+            "grep -R 'pattern' /path"
+        ],
+        "related_commands": [
+            "awk",
+            "sed"
+        ],
+        "best_practices": [
+            "Use quotes around the search pattern",
+            "Combine with redirection for large files"
+        ]
+    },
+    {
+        "name": "Edit File with Nano",
+        "command": "nano filename",
+        "description": "Opens the file in the Nano text editor.",
+        "section": "File & Search",
+        "output": "Opens Nano editor for 'filename'.",
+        "common_options": {},
+        "examples": [
+            "nano filename",
+            "nano /etc/hosts"
+        ],
+        "related_commands": [
+            "vim",
+            "vi",
+            "gedit"
+        ],
+        "best_practices": [
+            "Simple interface for beginners",
+            "Use sudo when editing system files"
+        ]
+    },
+    {
+        "name": "Concatenate Files",
+        "command": "cat file.txt",
+        "description": "Displays file content.",
+        "section": "File & Search",
+        "output": "Contents of file.txt.",
+        "common_options": {
+            "-n": "Show line numbers"
+        },
+        "examples": [
+            "cat file.txt",
+            "cat -n file.txt"
+        ],
+        "related_commands": [
+            "less",
+            "more"
+        ],
+        "best_practices": [
+            "Useful for quickly viewing file content",
+            "Combine with redirection to create new files"
+        ]
+    },
+    {
+        "name": "View File with Less",
+        "command": "less file.txt",
+        "description": "Views file content with pagination.",
+        "section": "File & Search",
+        "output": "Interactive file view.",
+        "common_options": {},
+        "examples": [
+            "less file.txt",
+            "less +G file.txt"
+        ],
+        "related_commands": [
+            "more",
+            "cat"
+        ],
+        "best_practices": [
+            "Use arrow keys to navigate",
+            "Press 'q' to quit"
+        ]
+    },
+    {
+        "name": "View File with More",
+        "command": "more file.txt",
+        "description": "Views file content with pagination.",
+        "section": "File & Search",
+        "output": "Paginated file content.",
+        "common_options": {},
+        "examples": [
+            "more file.txt",
+            "more +10 file.txt"
+        ],
+        "related_commands": [
+            "less",
+            "cat"
+        ],
+        "best_practices": [
+            "Press space to advance pages",
+            "Use for simple file viewing"
+        ]
+    },
+    {
+        "name": "Head of File",
+        "command": "head file.txt",
+        "description": "Displays the first 10 lines of a file.",
+        "section": "File & Search",
+        "output": "First 10 lines of file.txt.",
+        "common_options": {
+            "-n": "Specify number of lines to display"
+        },
+        "examples": [
+            "head file.txt",
+            "head -n 20 file.txt"
+        ],
+        "related_commands": [
+            "tail",
+            "sed"
+        ],
+        "best_practices": [
+            "Use to quickly preview file content",
+            "Combine with tail for file summaries"
+        ]
+    },
+    {
+        "name": "Tail of File",
+        "command": "tail file.txt",
+        "description": "Displays the last 10 lines of a file.",
+        "section": "File & Search",
+        "output": "Last 10 lines of file.txt.",
+        "common_options": {
+            "-n": "Specify number of lines to display",
+            "-f": "Follow file output in real-time"
+        },
+        "examples": [
+            "tail file.txt",
+            "tail -n 20 file.txt",
+            "tail -f file.txt"
+        ],
+        "related_commands": [
+            "head",
+            "less"
+        ],
+        "best_practices": [
+            "Use -f to monitor logs in real-time",
+            "Combine with grep for filtering output"
+        ]
+    },
+    {
+        "name": "Stream Editor",
+        "command": "sed 's/old/new/g' file.txt",
+        "description": "Replaces occurrences of 'old' with 'new' in a file.",
+        "section": "File & Search",
+        "output": "Modified file content.",
+        "common_options": {
+            "-i": "Edit files in place",
+            "s": "Substitute command"
+        },
+        "examples": [
+            "sed 's/old/new/g' file.txt",
+            "sed -i 's/old/new/g' file.txt"
+        ],
+        "related_commands": [
+            "awk",
+            "grep"
+        ],
+        "best_practices": [
+            "Test the command without -i first",
+            "Useful for batch text replacement"
+        ]
+    },
+    {
+        "name": "Pattern Scanning",
+        "command": "awk '{print $1}' file.txt",
+        "description": "Prints the first column of a file.",
+        "section": "File & Search",
+        "output": "First column values.",
+        "common_options": {},
+        "examples": [
+            "awk '{print $1}' file.txt",
+            "awk -F, '{print $2}' file.txt"
+        ],
+        "related_commands": [
+            "sed",
+            "grep"
+        ],
+        "best_practices": [
+            "Use -F to specify field separators",
+            "Great for processing columnar data"
+        ]
+    },
+    {
+        "name": "Compare Files",
+        "command": "diff file1.txt file2.txt",
+        "description": "Shows differences between two files.",
+        "section": "File & Search",
+        "output": "Diff output showing changes.",
+        "common_options": {
+            "-u": "Unified diff format",
+            "-c": "Context diff format"
+        },
+        "examples": [
+            "diff file1.txt file2.txt",
+            "diff -u file1.txt file2.txt"
+        ],
+        "related_commands": [
+            "cmp",
+            "comm"
+        ],
+        "best_practices": [
+            "Useful for identifying changes",
+            "Combine with patch for applying differences"
+        ]
+    },
+    {
+        "name": "Locate Files",
+        "command": "locate filename",
+        "description": "Finds files by name using a pre-built database.",
+        "section": "File & Search",
+        "output": "List of file paths.",
+        "common_options": {},
+        "examples": [
+            "locate filename",
+            "locate myfile.txt"
+        ],
+        "related_commands": [
+            "find",
+            "updatedb"
+        ],
+        "best_practices": [
+            "Run updatedb periodically",
+            "Works best when the database is current"
+        ]
+    },
+    {
+        "name": "Update File Database",
+        "command": "sudo updatedb",
+        "description": "Updates the file database used by locate.",
+        "section": "File & Search",
+        "output": "No output on success.",
+        "common_options": {},
+        "examples": [
+            "sudo updatedb"
+        ],
+        "related_commands": [
+            "locate",
+            "find"
+        ],
+        "best_practices": [
+            "Run as root",
+            "Useful before using locate to search for new files"
+        ]
+    },
+    {
+        "name": "Recursive File Search",
+        "command": "grep -R 'pattern' /path",
+        "description": "Recursively searches for a pattern in files within a directory.",
+        "section": "File & Search",
+        "output": "Lines with pattern matches.",
+        "common_options": {
+            "-R": "Recursively search directories",
+            "-n": "Show line numbers"
+        },
+        "examples": [
+            "grep -R 'pattern' /path",
+            "grep -Rin 'pattern' /path"
+        ],
+        "related_commands": [
+            "find",
+            "awk"
+        ],
+        "best_practices": [
+            "Can be slow on large directories",
+            "Use --exclude to ignore certain files or directories"
+        ]
+    },
+    {
+        "name": "Count Lines",
+        "command": "wc -l file.txt",
+        "description": "Counts the number of lines in a file.",
+        "section": "File & Search",
+        "output": "Number of lines.",
+        "common_options": {},
+        "examples": [
+            "wc -l file.txt",
+            "cat file.txt | wc -l"
+        ],
+        "related_commands": [
+            "grep -c",
+            "awk"
+        ],
+        "best_practices": [
+            "Useful for quickly assessing file length",
+            "Combine with other commands for statistical analysis"
+        ]
+    },
+    {
+        "name": "File Comparison with cmp",
+        "command": "cmp file1.txt file2.txt",
+        "description": "Compares two files byte by byte.",
+        "section": "File & Search",
+        "output": "No output if files are identical; otherwise, differences are shown.",
+        "common_options": {
+            "-l": "Output differences byte by byte"
+        },
+        "examples": [
+            "cmp file1.txt file2.txt",
+            "cmp -l file1.txt file2.txt"
+        ],
+        "related_commands": [
+            "diff",
+            "comm"
+        ],
+        "best_practices": [
+            "Useful for binary file comparisons",
+            "No output indicates files are identical"
+        ]
+    },
+    {
+        "name": "Print File in Reverse",
+        "command": "tac file.txt",
+        "description": "Prints file lines in reverse order.",
+        "section": "File & Search",
+        "output": "File content in reverse order.",
+        "common_options": {},
+        "examples": [
+            "tac file.txt",
+            "tac /var/log/syslog"
+        ],
+        "related_commands": [
+            "cat",
+            "rev"
+        ],
+        "best_practices": [
+            "Useful for reverse-order log viewing",
+            "Combine with head to see last few lines first"
+        ]
+    },
+    {
+        "name": "Search Compressed Files",
+        "command": "zgrep 'pattern' file.gz",
+        "description": "Searches for a pattern in a compressed file.",
+        "section": "File & Search",
+        "output": "Matching lines from the compressed file.",
+        "common_options": {},
+        "examples": [
+            "zgrep 'pattern' file.gz",
+            "zgrep -i 'error' file.gz"
+        ],
+        "related_commands": [
+            "grep",
+            "zcat"
+        ],
+        "best_practices": [
+            "Use for analyzing compressed log files",
+            "Works similarly to grep but for gzip files"
+        ]
+    },
+    {
+        "name": "Change File Permissions",
+        "command": "chmod 755 filename",
+        "description": "Modifies the permissions of the file to 755.",
+        "section": "Permissions",
+        "output": "No output on success.",
+        "common_options": {
+            "-R": "Recursively change permissions"
+        },
+        "examples": [
+            "chmod 755 filename",
+            "chmod -R 755 /path/to/directory"
+        ],
+        "related_commands": [
+            "chown",
+            "umask"
+        ],
+        "best_practices": [
+            "Ensure proper permissions for security",
+            "Use recursively with caution"
+        ]
+    },
+    {
+        "name": "Change File Ownership",
+        "command": "chown user:group filename",
+        "description": "Changes the owner and group of the file.",
+        "section": "Permissions",
+        "output": "No output on success.",
+        "common_options": {
+            "-R": "Recursively change ownership"
+        },
+        "examples": [
+            "chown user:group filename",
+            "chown -R user:group /path/to/directory"
+        ],
+        "related_commands": [
+            "chmod",
+            "chgrp"
+        ],
+        "best_practices": [
+            "Run as root for changing ownership",
+            "Ensure the user and group exist on the system"
+        ]
+    },
+    {
+        "name": "Set Umask",
+        "command": "umask 022",
+        "description": "Sets default file creation permissions.",
+        "section": "Permissions",
+        "output": "No output on success.",
+        "common_options": {},
+        "examples": [
+            "umask 022",
+            "umask"
+        ],
+        "related_commands": [
+            "chmod",
+            "chown"
+        ],
+        "best_practices": [
+            "Set in shell configuration for consistency",
+            "Understand the impact of the permission mask"
+        ]
+    },
+    {
+        "name": "List File Permissions",
+        "command": "ls -l",
+        "description": "Lists files with their permissions.",
+        "section": "Permissions",
+        "output": "drwxr-xr-x 2 user group 4096 Jan 1 file.txt",
+        "common_options": {},
+        "examples": [
+            "ls -l",
+            "ls -la"
+        ],
+        "related_commands": [
+            "stat",
+            "find"
+        ],
+        "best_practices": [
+            "Useful for auditing file permissions",
+            "Combine with grep to filter results"
+        ]
+    },
+    {
+        "name": "Modify ACL",
+        "command": "setfacl -m u:username:rw file.txt",
+        "description": "Modifies Access Control Lists for a file.",
+        "section": "Permissions",
+        "output": "No output on success.",
+        "common_options": {
+            "-m": "Modify ACL entries",
+            "-R": "Apply changes recursively"
+        },
+        "examples": [
+            "setfacl -m u:username:rw file.txt",
+            "setfacl -R -m u:username:rw /path/to/directory"
+        ],
+        "related_commands": [
+            "getfacl",
+            "chmod"
+        ],
+        "best_practices": [
+            "Ensure the filesystem supports ACLs",
+            "Use to fine-tune permissions beyond standard modes"
+        ]
+    },
+    {
+        "name": "Check ACL",
+        "command": "getfacl file.txt",
+        "description": "Displays the ACL of a file.",
+        "section": "Permissions",
+        "output": "ACL details for file.txt",
+        "common_options": {},
+        "examples": [
+            "getfacl file.txt",
+            "getfacl -R /path"
+        ],
+        "related_commands": [
+            "setfacl",
+            "ls -l"
+        ],
+        "best_practices": [
+            "Useful for troubleshooting permission issues",
+            "Combine with chmod for comprehensive permission management"
+        ]
+    },
+    {
+        "name": "Compress Files",
+        "command": "tar -czvf archive.tar.gz folder",
+        "description": "Creates a gzipped tar archive of a folder.",
+        "section": "File Management",
+        "output": "folder/\nfolder/file1.txt\nfolder/file2.txt",
+        "common_options": {
+            "-c": "Create archive",
+            "-z": "Compress using gzip",
+            "-v": "Verbose output",
+            "-f": "Specify archive file"
+        },
+        "examples": [
+            "tar -czvf archive.tar.gz folder",
+            "tar -czf backup.tar.gz /path/to/folder"
+        ],
+        "related_commands": [
+            "zip",
+            "gzip"
+        ],
+        "best_practices": [
+            "Ensure you have enough disk space",
+            "Use verbose mode to monitor progress"
+        ]
+    },
+    {
+        "name": "Extract Archive",
+        "command": "tar -xzvf archive.tar.gz",
+        "description": "Extracts a gzipped tar archive.",
+        "section": "File Management",
+        "output": "folder/\nfolder/file1.txt\nfolder/file2.txt",
+        "common_options": {
+            "-x": "Extract archive",
+            "-z": "Decompress using gzip",
+            "-v": "Verbose output",
+            "-f": "Specify archive file"
+        },
+        "examples": [
+            "tar -xzvf archive.tar.gz",
+            "tar -xzf archive.tar.gz -C /destination"
+        ],
+        "related_commands": [
+            "unzip",
+            "tar"
+        ],
+        "best_practices": [
+            "Extract to a safe directory",
+            "Verify archive integrity before extraction"
+        ]
+    },
+    {
+        "name": "Copy File",
+        "command": "cp source.txt destination.txt",
+        "description": "Copies a file.",
+        "section": "File Management",
+        "output": "No output on success.",
+        "common_options": {
+            "-r": "Recursively copy directories",
+            "-v": "Verbose output"
+        },
+        "examples": [
+            "cp source.txt destination.txt",
+            "cp -v source.txt destination.txt"
+        ],
+        "related_commands": [
+            "mv",
+            "rsync"
+        ],
+        "best_practices": [
+            "Use -i to prompt before overwriting",
+            "Verify file paths before copying"
+        ]
+    },
+    {
+        "name": "Move File",
+        "command": "mv oldname.txt newname.txt",
+        "description": "Moves or renames a file.",
+        "section": "File Management",
+        "output": "No output on success.",
+        "common_options": {
+            "-v": "Verbose output",
+            "-i": "Prompt before overwriting"
+        },
+        "examples": [
+            "mv oldname.txt newname.txt",
+            "mv -v oldname.txt newname.txt"
+        ],
+        "related_commands": [
+            "cp",
+            "rm"
+        ],
+        "best_practices": [
+            "Ensure the destination path is correct",
+            "Use with caution to avoid data loss"
+        ]
+    },
+    {
+        "name": "Remove File",
+        "command": "rm file.txt",
+        "description": "Deletes a file.",
+        "section": "File Management",
+        "output": "No output on success.",
+        "common_options": {
+            "-f": "Force removal",
+            "-i": "Prompt before removal"
+        },
+        "examples": [
+            "rm file.txt",
+            "rm -i file.txt"
+        ],
+        "related_commands": [
+            "unlink",
+            "rm -r"
+        ],
+        "best_practices": [
+            "Be cautious with wildcards",
+            "Use rm -i for interactive deletion"
+        ]
+    },
+    {
+        "name": "Create Directory",
+        "command": "mkdir new_directory",
+        "description": "Creates a new directory.",
+        "section": "File Management",
+        "output": "No output on success.",
+        "common_options": {
+            "-p": "Create parent directories as needed"
+        },
+        "examples": [
+            "mkdir new_directory",
+            "mkdir -p /path/to/new_directory"
+        ],
+        "related_commands": [
+            "rmdir",
+            "cp -r"
+        ],
+        "best_practices": [
+            "Ensure the directory does not already exist",
+            "Use -p to avoid errors when creating nested directories"
+        ]
+    },
+    {
+        "name": "Remove Directory",
+        "command": "rmdir empty_directory",
+        "description": "Removes an empty directory.",
+        "section": "File Management",
+        "output": "No output on success.",
+        "common_options": {},
+        "examples": [
+            "rmdir empty_directory",
+            "rmdir /path/to/empty_directory"
+        ],
+        "related_commands": [
+            "rm -r",
+            "mkdir"
+        ],
+        "best_practices": [
+            "Directory must be empty",
+            "Use rm -r for non-empty directories with caution"
+        ]
+    },
+    {
+        "name": "Recursive Remove",
+        "command": "rm -rf directory",
+        "description": "Forcefully removes a directory and its contents.",
+        "section": "File Management",
+        "output": "No output on success.",
+        "common_options": {
+            "-r": "Recursively remove directories",
+            "-f": "Force removal without prompt"
+        },
+        "examples": [
+            "rm -rf directory",
+            "rm -rf /path/to/directory"
+        ],
+        "related_commands": [
+            "rm",
+            "rmdir"
+        ],
+        "best_practices": [
+            "Double-check the directory path before execution",
+            "Be extremely cautious to avoid deleting important files"
+        ]
+    },
+    {
+        "name": "List Files",
+        "command": "ls",
+        "description": "Lists directory contents.",
+        "section": "File Management",
+        "output": "File and directory names.",
+        "common_options": {
+            "-a": "Include hidden files",
+            "-l": "Long listing format"
+        },
+        "examples": [
+            "ls",
+            "ls -la"
+        ],
+        "related_commands": [
+            "find",
+            "tree"
+        ],
+        "best_practices": [
+            "Use options to suit your needs",
+            "Combine with grep to filter specific files"
+        ]
+    },
+    {
+        "name": "List Files with Details",
+        "command": "ls -la",
+        "description": "Lists directory contents with detailed information.",
+        "section": "File Management",
+        "output": "Detailed list of files.",
+        "common_options": {
+            "-a": "Include hidden files",
+            "-l": "Long listing format"
+        },
+        "examples": [
+            "ls -la",
+            "ls -lAh"
+        ],
+        "related_commands": [
+            "ls",
+            "stat"
+        ],
+        "best_practices": [
+            "Provides detailed file information",
+            "Use with pagination if output is long"
+        ]
+    },
+    {
+        "name": "Concatenate and Create File",
+        "command": "cat > file.txt",
+        "description": "Creates a file from terminal input.",
+        "section": "File Management",
+        "output": "No output until input ends.",
+        "common_options": {},
+        "examples": [
+            "cat > file.txt",
+            "cat > newfile.txt"
+        ],
+        "related_commands": [
+            "cat",
+            "echo"
+        ],
+        "best_practices": [
+            "Press Ctrl+D to end input",
+            "Useful for quick file creation"
+        ]
+    },
+    {
+        "name": "Append to File",
+        "command": "echo 'text' >> file.txt",
+        "description": "Appends text to a file.",
+        "section": "File Management",
+        "output": "No output on success.",
+        "common_options": {},
+        "examples": [
+            "echo 'text' >> file.txt",
+            "echo 'More text' >> file.txt"
+        ],
+        "related_commands": [
+            "cat",
+            "tee -a"
+        ],
+        "best_practices": [
+            "Ensure proper redirection",
+            "Useful for logging and updating files"
+        ]
+    },
+    {
+        "name": "Create Empty File",
+        "command": "touch file.txt",
+        "description": "Creates an empty file or updates its timestamp.",
+        "section": "File Management",
+        "output": "No output on success.",
+        "common_options": {},
+        "examples": [
+            "touch file.txt",
+            "touch /path/to/file.txt"
+        ],
+        "related_commands": [
+            "echo",
+            "cat"
+        ],
+        "best_practices": [
+            "Verify file creation with ls",
+            "Useful in scripting to ensure file presence"
+        ]
+    },
+    {
+        "name": "Search File Content",
+        "command": "grep 'text' file.txt",
+        "description": "Searches for text in a file.",
+        "section": "File Management",
+        "output": "Matching lines.",
+        "common_options": {
+            "-i": "Case-insensitive search",
+            "-n": "Show line numbers"
+        },
+        "examples": [
+            "grep 'text' file.txt",
+            "grep -in 'text' file.txt"
+        ],
+        "related_commands": [
+            "awk",
+            "sed"
+        ],
+        "best_practices": [
+            "Use quotes around the search text",
+            "Combine with redirection for large files"
+        ]
+    },
+    {
+        "name": "Count Words",
+        "command": "wc file.txt",
+        "description": "Counts lines, words, and characters in a file.",
+        "section": "File Management",
+        "output": "Lines, words, and characters count.",
+        "common_options": {
+            "-w": "Count words",
+            "-l": "Count lines",
+            "-c": "Count bytes"
+        },
+        "examples": [
+            "wc file.txt",
+            "wc -w file.txt"
+        ],
+        "related_commands": [
+            "grep -c",
+            "awk"
+        ],
+        "best_practices": [
+            "Useful for basic text statistics",
+            "Combine with other options for detailed counts"
+        ]
+    },
+    {
+        "name": "Check File Type",
+        "command": "file file.txt",
+        "description": "Determines the file type.",
+        "section": "File Management",
+        "output": "File type description.",
+        "common_options": {},
+        "examples": [
+            "file file.txt",
+            "file /bin/ls"
+        ],
+        "related_commands": [
+            "stat",
+            "ls -l"
+        ],
+        "best_practices": [
+            "Use to verify file format",
+            "Useful in scripts to conditionally process files"
+        ]
+    },
+    {
+        "name": "Merge Files",
+        "command": "cat file1.txt file2.txt > merged.txt",
+        "description": "Merges two or more files into one.",
+        "section": "File Management",
+        "output": "No output on success.",
+        "common_options": {},
+        "examples": [
+            "cat file1.txt file2.txt > merged.txt",
+            "cat part* > complete.txt"
+        ],
+        "related_commands": [
+            "split",
+            "diff"
+        ],
+        "best_practices": [
+            "Ensure the order of files is correct",
+            "Verify the merged file for completeness"
+        ]
+    },
+    {
+        "name": "Split File",
+        "command": "split -b 1M largefile.txt part_",
+        "description": "Splits a large file into 1MB chunks.",
+        "section": "File Management",
+        "output": "Files named part_aa, part_ab, etc.",
+        "common_options": {
+            "-b": "Specify byte size for each split",
+            "-d": "Use numeric suffixes"
+        },
+        "examples": [
+            "split -b 1M largefile.txt part_",
+            "split -b 1M -d largefile.txt part_"
+        ],
+        "related_commands": [
+            "cat",
+            "csplit"
+        ],
+        "best_practices": [
+            "Useful for transferring large files in parts",
+            "Verify split files before deleting the original"
+        ]
+    },
+    {
+        "name": "Change File Encoding",
+        "command": "iconv -f utf-8 -t ascii file.txt -o newfile.txt",
+        "description": "Converts file encoding from UTF-8 to ASCII.",
+        "section": "File Management",
+        "output": "Converted file newfile.txt.",
+        "common_options": {
+            "-f": "Source encoding",
+            "-t": "Target encoding",
+            "-o": "Output file"
+        },
+        "examples": [
+            "iconv -f utf-8 -t ascii file.txt -o newfile.txt",
+            "iconv -f ISO-8859-1 -t utf-8 input.txt -o output.txt"
+        ],
+        "related_commands": [
+            "recode",
+            "enca"
+        ],
+        "best_practices": [
+            "Verify file content after conversion",
+            "Ensure correct encoding names are used"
+        ]
+    },
+    {
+        "name": "rsync",
+        "command": "rsync [options] source destination",
+        "description": "Synchronizes files and directories between locations, locally or remotely.",
+        "section": "File Management",
+        "output": "Lists files updated, transferred or skipped.",
+        "common_options": {
+            "-avz": "Archive mode (recursive, preserves permissions, compresses data, verbose)",
+            "--delete": "Delete extraneous files from destination that aren’t in source"
+        },
+        "examples": [
+            "rsync -avz /local/dir/ user@remote:/remote/dir/",
+            "rsync -avz --delete /local/dir/ /backup/dir/"
+        ],
+        "related_commands": [
+            "scp",
+            "cp"
+        ],
+        "best_practices": [
+            "Test with --dry-run before running for real",
+            "Ensure trailing slashes on directory paths are correct"
+        ]
+    },
+    {
+        "name": "scp",
+        "command": "scp [options] source destination",
+        "description": "Securely copies files between hosts on a network using SSH.",
+        "section": "Networking",
+        "output": "Copies files securely over the network.",
+        "common_options": {
+            "-r": "Recursively copy directories",
+            "-C": "Enable compression during transfer"
+        },
+        "examples": [
+            "scp file.txt user@remote:/path/",
+            "scp -r /local/dir user@remote:/path/"
+        ],
+        "related_commands": [
+            "rsync",
+            "sftp"
+        ],
+        "best_practices": [
+            "Prefer key-based authentication over passwords",
+            "Verify remote host fingerprints to avoid man-in-the-middle attacks"
+        ]
+    },
+    {
+        "name": "sftp",
+        "command": "sftp [options] [user@]host",
+        "description": "Provides an interactive interface for secure file transfer using SSH.",
+        "section": "Networking",
+        "output": "Opens an SFTP prompt for file management on the remote host.",
+        "common_options": {
+            "-P": "Specify an alternative port number",
+            "-b": "Run in batch mode using a file of commands"
+        },
+        "examples": [
+            "sftp user@remote",
+            "sftp -P 2222 user@remote"
+        ],
+        "related_commands": [
+            "scp",
+            "ftp"
+        ],
+        "best_practices": [
+            "Use batch mode for scripted transfers",
+            "Ensure proper SSH configuration for security"
+        ]
+    },
+    {
+        "name": "ftp",
+        "command": "ftp [host]",
+        "description": "Transfers files using the unencrypted File Transfer Protocol.",
+        "section": "Networking",
+        "output": "Opens an FTP session with command prompt.",
+        "common_options": {
+            "-n": "Suppress auto-login so that you can manually login"
+        },
+        "examples": [
+            "ftp ftp.example.com",
+            "ftp -n ftp.example.com"
+        ],
+        "related_commands": [
+            "sftp",
+            "wget"
+        ],
+        "best_practices": [
+            "Use SFTP instead of FTP when possible for security reasons",
+            "Avoid sending sensitive information over FTP"
+        ]
+    },
+    {
+        "name": "ssh",
+        "command": "ssh [user@]hostname",
+        "description": "Connects securely to a remote machine over an encrypted SSH connection.",
+        "section": "Networking",
+        "output": "Starts an interactive shell session on the remote host.",
+        "common_options": {
+            "-p": "Specify the remote port",
+            "-i": "Specify the identity (private key) file"
+        },
+        "examples": [
+            "ssh user@remote",
+            "ssh -p 2222 user@remote"
+        ],
+        "related_commands": [
+            "scp",
+            "sftp"
+        ],
+        "best_practices": [
+            "Use strong, key-based authentication",
+            "Disable root login for increased security"
+        ]
+    },
+    {
+        "name": "ssh-keygen",
+        "command": "ssh-keygen [options]",
+        "description": "Generates, manages, and converts authentication keys for SSH.",
+        "section": "Networking",
+        "output": "Creates a public/private key pair for SSH authentication.",
+        "common_options": {
+            "-t": "Specify the type of key (e.g., rsa, ed25519)",
+            "-b": "Specify the number of bits in the key"
+        },
+        "examples": [
+            "ssh-keygen -t rsa -b 4096",
+            "ssh-keygen -t ed25519"
+        ],
+        "related_commands": [
+            "ssh",
+            "ssh-copy-id"
+        ],
+        "best_practices": [
+            "Protect your private key with a strong passphrase",
+            "Regularly update and rotate your keys"
+        ]
+    },
+    {
+        "name": "sshd",
+        "command": "sshd [options]",
+        "description": "The SSH daemon that listens for and accepts incoming SSH connections.",
+        "section": "Networking",
+        "output": "Starts the SSH server; typically no output on success.",
+        "common_options": {
+            "-D": "Run in the foreground (useful for debugging)"
+        },
+        "examples": [
+            "sudo /usr/sbin/sshd",
+            "sshd -D"
+        ],
+        "related_commands": [
+            "ssh",
+            "systemctl status sshd"
+        ],
+        "best_practices": [
+            "Keep the daemon updated to patch vulnerabilities",
+            "Run as a background service for continuous availability"
+        ]
+    },
+    {
+        "name": "chgrp",
+        "command": "chgrp [options] group file",
+        "description": "Changes the group ownership of files or directories.",
+        "section": "Permissions",
+        "output": "No output on success; changes group ownership.",
+        "common_options": {
+            "-R": "Recursively change group ownership"
+        },
+        "examples": [
+            "chgrp developers file.txt",
+            "chgrp -R developers /path/to/dir"
+        ],
+        "related_commands": [
+            "chown",
+            "chmod"
+        ],
+        "best_practices": [
+            "Ensure the target group exists",
+            "Double-check recursive changes to avoid mistakes"
+        ]
+    },
+    {
+        "name": "readlink",
+        "command": "readlink [options] file",
+        "description": "Prints the target of a symbolic link.",
+        "section": "File Management",
+        "output": "Displays the actual file or directory the symlink points to.",
+        "common_options": {
+            "-f": "Follow all symlinks to output the canonicalized absolute pathname"
+        },
+        "examples": [
+            "readlink symlink",
+            "readlink -f /path/to/symlink"
+        ],
+        "related_commands": [
+            "ln",
+            "ls -l"
+        ],
+        "best_practices": [
+            "Use -f for complete path resolution",
+            "Verify symlink targets when troubleshooting broken links"
+        ]
+    },
+    {
+        "name": "ln",
+        "command": "ln [options] target link_name",
+        "description": "Creates hard or symbolic links between files.",
+        "section": "File Management",
+        "output": "Creates a link; no output on success.",
+        "common_options": {
+            "-s": "Create a symbolic link instead of a hard link"
+        },
+        "examples": [
+            "ln -s /path/to/target link_name",
+            "ln /path/to/target link_name"
+        ],
+        "related_commands": [
+            "readlink",
+            "cp"
+        ],
+        "best_practices": [
+            "Prefer symbolic links for flexibility",
+            "Double-check paths to avoid broken links"
+        ]
+    },
+    {
+        "name": "parted",
+        "command": "parted [options] device",
+        "description": "Manages partition tables on storage devices.",
+        "section": "Disk & Filesystem",
+        "output": "Starts an interactive partitioning session or outputs partition info.",
+        "common_options": {
+            "--script": "Run in non-interactive mode"
+        },
+        "examples": [
+            "parted /dev/sda",
+            "parted --script /dev/sda mklabel gpt"
+        ],
+        "related_commands": [
+            "fdisk",
+            "lsblk"
+        ],
+        "best_practices": [
+            "Always back up data before modifying partitions",
+            "Use script mode for automated partitioning tasks"
+        ]
+    },
+    {
+        "name": "blkid",
+        "command": "blkid [options]",
+        "description": "Prints block device attributes such as UUID and filesystem type.",
+        "section": "Disk & Filesystem",
+        "output": "Lists each block device with its identifiers.",
+        "common_options": {
+            "-o": "Specify output format (e.g., export)"
+        },
+        "examples": [
+            "blkid",
+            "blkid -o export"
+        ],
+        "related_commands": [
+            "lsblk",
+            "fdisk -l"
+        ],
+        "best_practices": [
+            "Use for reliably mounting disks by UUID",
+            "Run with sudo for complete information"
+        ]
+    },
+    {
+        "name": "hdparm",
+        "command": "hdparm [options] device",
+        "description": "Gets and sets parameters for SATA/IDE devices.",
+        "section": "Disk & Filesystem",
+        "output": "Displays device parameters and performance benchmarks.",
+        "common_options": {
+            "-I": "Display detailed device information",
+            "-tT": "Run performance tests"
+        },
+        "examples": [
+            "hdparm -I /dev/sda",
+            "hdparm -tT /dev/sda"
+        ],
+        "related_commands": [
+            "smartctl",
+            "lsblk"
+        ],
+        "best_practices": [
+            "Use with caution as incorrect settings can damage hardware",
+            "Run as root for full device details"
+        ]
+    },
+    {
+        "name": "dstat",
+        "command": "dstat [options]",
+        "description": "Reports various system statistics (CPU, disk, network, etc.) in real time.",
+        "section": "System Information",
+        "output": "Real-time display of system resource usage.",
+        "common_options": {
+            "-c": "Display CPU stats",
+            "-d": "Display disk stats",
+            "-n": "Display network stats"
+        },
+        "examples": [
+            "dstat",
+            "dstat -cdn"
+        ],
+        "related_commands": [
+            "vmstat",
+            "iostat"
+        ],
+        "best_practices": [
+            "Use for quick performance diagnostics",
+            "Log output for trend analysis over time"
+        ]
+    },
+    {
+        "name": "ifstat",
+        "command": "ifstat [options]",
+        "description": "Shows real-time network interface bandwidth usage.",
+        "section": "Networking",
+        "output": "Displays transmit and receive rates for network interfaces.",
+        "common_options": {
+            "-i": "Specify the network interface",
+            "-t": "Include timestamps in output"
+        },
+        "examples": [
+            "ifstat",
+            "ifstat -i eth0 -t"
+        ],
+        "related_commands": [
+            "iftop",
+            "ip -s link"
+        ],
+        "best_practices": [
+            "Run with appropriate privileges to access network stats",
+            "Focus on specific interfaces for clarity"
+        ]
+    },
+    {
+        "name": "mtr",
+        "command": "mtr [options] host",
+        "description": "Combines traceroute and ping functionality to provide real-time network path analysis.",
+        "section": "Networking",
+        "output": "Displays live route and latency information to the target host.",
+        "common_options": {
+            "-r": "Run in report mode",
+            "-c": "Specify the number of cycles"
+        },
+        "examples": [
+            "mtr google.com",
+            "mtr -r -c 10 google.com"
+        ],
+        "related_commands": [
+            "traceroute",
+            "ping"
+        ],
+        "best_practices": [
+            "Run as root for complete data",
+            "Use report mode for logging network performance"
+        ]
+    },
+    {
+        "name": "nslookup",
+        "command": "nslookup domain",
+        "description": "Queries DNS to retrieve domain name or IP address mapping.",
+        "section": "Networking",
+        "output": "Displays DNS resolution details for the queried domain.",
+        "common_options": {},
+        "examples": [
+            "nslookup example.com"
+        ],
+        "related_commands": [
+            "dig",
+            "host"
+        ],
+        "best_practices": [
+            "Use for troubleshooting DNS issues",
+            "Cross-check with other DNS utilities for accuracy"
+        ]
+    },
+    {
+        "name": "strace",
+        "command": "strace [options] command",
+        "description": "Traces system calls and signals of a process for debugging.",
+        "section": "Process Management",
+        "output": "Detailed log of system calls made by the specified process.",
+        "common_options": {
+            "-o": "Redirect output to a file",
+            "-f": "Follow child processes"
+        },
+        "examples": [
+            "strace ls",
+            "strace -o trace.log -f myapp"
+        ],
+        "related_commands": [
+            "ltrace",
+            "gdb"
+        ],
+        "best_practices": [
+            "Use with caution due to voluminous output",
+            "Apply filters to focus on relevant system calls"
+        ]
+    },
+    {
+        "name": "ltrace",
+        "command": "ltrace [options] command",
+        "description": "Traces library calls made by a process.",
+        "section": "Process Management",
+        "output": "Logs dynamic library function calls made during process execution.",
+        "common_options": {
+            "-f": "Follow calls in child processes"
+        },
+        "examples": [
+            "ltrace ls",
+            "ltrace -f myapp"
+        ],
+        "related_commands": [
+            "strace",
+            "gdb"
+        ],
+        "best_practices": [
+            "Use in combination with strace for comprehensive debugging",
+            "Filter output if too verbose"
+        ]
+    },
+    {
+        "name": "objdump",
+        "command": "objdump [options] binary",
+        "description": "Displays various information (disassembly, headers) from binary files.",
+        "section": "System Information",
+        "output": "Disassembled code and binary headers.",
+        "common_options": {
+            "-d": "Disassemble the binary",
+            "-x": "Display all header information"
+        },
+        "examples": [
+            "objdump -d /bin/ls",
+            "objdump -x myapp"
+        ],
+        "related_commands": [
+            "readelf",
+            "nm"
+        ],
+        "best_practices": [
+            "Use for reverse engineering and debugging binaries",
+            "Ensure the binary format is supported"
+        ]
+    },
+    {
+        "name": "readelf",
+        "command": "readelf [options] binary",
+        "description": "Displays information about ELF-format binaries.",
+        "section": "System Information",
+        "output": "Detailed ELF header and section info.",
+        "common_options": {
+            "-a": "Display all available information",
+            "-h": "Show only the header"
+        },
+        "examples": [
+            "readelf -a /bin/ls",
+            "readelf -h myapp"
+        ],
+        "related_commands": [
+            "objdump",
+            "nm"
+        ],
+        "best_practices": [
+            "Use to inspect binary file structure",
+            "Compare with objdump output for thorough analysis"
+        ]
+    },
+    {
+        "name": "stat",
+        "command": "stat file",
+        "description": "Displays file or filesystem status, including size, permissions, and timestamps.",
+        "section": "File & Search",
+        "output": "Comprehensive metadata for the file.",
+        "common_options": {
+            "--printf": "Customize the output format"
+        },
+        "examples": [
+            "stat file.txt",
+            "stat --printf '%n %s\n' file.txt"
+        ],
+        "related_commands": [
+            "ls -l",
+            "file"
+        ],
+        "best_practices": [
+            "Use in scripts to gather file metadata",
+            "Combine with grep to extract specific details"
+        ]
+    },
+    {
+        "name": "swapon",
+        "command": "swapon [options] device",
+        "description": "Enables a swap area on a device or file.",
+        "section": "Disk & Filesystem",
+        "output": "Activates swap space without direct output.",
+        "common_options": {
+            "-s": "Display a summary of swap usage"
+        },
+        "examples": [
+            "swapon /dev/sda2",
+            "swapon -s"
+        ],
+        "related_commands": [
+            "swapoff",
+            "free"
+        ],
+        "best_practices": [
+            "Format the device as swap before enabling",
+            "Monitor swap usage after activation"
+        ]
+    },
+    {
+        "name": "swapoff",
+        "command": "swapoff [options] device",
+        "description": "Disables a swap area on a device or file.",
+        "section": "Disk & Filesystem",
+        "output": "Deactivates swap space.",
+        "common_options": {},
+        "examples": [
+            "swapoff /dev/sda2"
+        ],
+        "related_commands": [
+            "swapon",
+            "free"
+        ],
+        "best_practices": [
+            "Ensure sufficient RAM is available before disabling swap",
+            "Temporarily disable swap for system maintenance if needed"
+        ]
+    },
+    {
+        "name": "lsmem",
+        "command": "lsmem",
+        "description": "Displays information about the system's memory blocks and usage.",
+        "section": "System Information",
+        "output": "Lists memory segments and their sizes.",
+        "common_options": {},
+        "examples": [
+            "lsmem"
+        ],
+        "related_commands": [
+            "free",
+            "dmidecode"
+        ],
+        "best_practices": [
+            "Run as root for complete memory mapping",
+            "Use to diagnose hardware memory configuration"
+        ]
+    },
+    {
+        "name": "inxi",
+        "command": "inxi [options]",
+        "description": "Provides a concise overview of system hardware and configuration.",
+        "section": "System Information",
+        "output": "Detailed summary of system components.",
+        "common_options": {
+            "-Fxz": "Display full system information while hiding sensitive data"
+        },
+        "examples": [
+            "inxi -Fxz"
+        ],
+        "related_commands": [
+            "lshw",
+            "dmidecode"
+        ],
+        "best_practices": [
+            "Ideal for a quick system overview",
+            "Redirect output to a file for reporting"
+        ]
+    },
+    {
+        "name": "glances",
+        "command": "glances",
+        "description": "A cross-platform system monitoring tool providing real-time information.",
+        "section": "System Information",
+        "output": "An interactive dashboard showing CPU, memory, disk, and network usage.",
+        "common_options": {
+            "-w": "Enable web server mode to monitor remotely"
+        },
+        "examples": [
+            "glances",
+            "glances -w"
+        ],
+        "related_commands": [
+            "top",
+            "htop"
+        ],
+        "best_practices": [
+            "Run with elevated privileges for full system details",
+            "Utilize web mode for remote monitoring of critical systems"
+        ]
+    },
+    {
+        "name": "iotop",
+        "command": "iotop [options]",
+        "description": "Monitors disk I/O usage per process in real time.",
+        "section": "Disk & Filesystem",
+        "output": "Real-time list of processes and their I/O statistics.",
+        "common_options": {
+            "-o": "Only display processes actually doing I/O"
+        },
+        "examples": [
+            "iotop",
+            "iotop -o"
+        ],
+        "related_commands": [
+            "iostat",
+            "vmstat"
+        ],
+        "best_practices": [
+            "Run as root for complete information",
+            "Use during performance troubleshooting to identify I/O bottlenecks"
+        ]
+    },
+    {
+        "name": "perf",
+        "command": "perf [options] command",
+        "description": "A performance analysis tool for Linux, used to profile and trace system performance.",
+        "section": "System Information",
+        "output": "Provides performance metrics and profiling reports.",
+        "common_options": {
+            "record": "Record performance data",
+            "report": "Display the recorded performance data"
+        },
+        "examples": [
+            "perf record -g ls",
+            "perf report"
+        ],
+        "related_commands": [
+            "strace",
+            "top"
+        ],
+        "best_practices": [
+            "Profile over a representative workload period",
+            "Analyze reports to optimize system performance"
+        ]
+    },
+    {
+        "name": "stress",
+        "command": "stress [options]",
+        "description": "Imposes load on system resources (CPU, memory, I/O) for testing and benchmarking.",
+        "section": "System Information",
+        "output": "No output on success; stress tests run for a specified duration.",
+        "common_options": {
+            "--cpu": "Number of CPU workers",
+            "--io": "Number of I/O workers"
+        },
+        "examples": [
+            "stress --cpu 4 --io 2",
+            "stress --cpu 8"
+        ],
+        "related_commands": [
+            "stress-ng"
+        ],
+        "best_practices": [
+            "Run on non-production systems only",
+            "Monitor system temperatures during tests"
+        ]
+    },
+    {
+        "name": "stress-ng",
+        "command": "stress-ng [options]",
+        "description": "An advanced tool to stress test various subsystems of a computer.",
+        "section": "System Information",
+        "output": "Displays a summary of stress tests and performance metrics.",
+        "common_options": {
+            "--cpu": "Stress CPU cores",
+            "--vm": "Stress virtual memory"
+        },
+        "examples": [
+            "stress-ng --cpu 4 --vm 2 --timeout 60s"
+        ],
+        "related_commands": [
+            "stress"
+        ],
+        "best_practices": [
+            "Use timeouts to prevent indefinite stress",
+            "Run tests in a controlled environment"
+        ]
+    },
+    {
+        "name": "md5sum",
+        "command": "md5sum file",
+        "description": "Calculates and prints the MD5 checksum of a file for integrity verification.",
+        "section": "File & Search",
+        "output": "Outputs the MD5 hash followed by the filename.",
+        "common_options": {},
+        "examples": [
+            "md5sum file.txt"
+        ],
+        "related_commands": [
+            "sha256sum",
+            "sum"
+        ],
+        "best_practices": [
+            "Use to verify file integrity after transfer",
+            "Compare computed hash with a trusted value"
+        ]
+    },
+    {
+        "name": "sha256sum",
+        "command": "sha256sum file",
+        "description": "Calculates and displays the SHA-256 checksum of a file.",
+        "section": "File & Search",
+        "output": "Outputs the SHA-256 hash followed by the filename.",
+        "common_options": {},
+        "examples": [
+            "sha256sum file.txt"
+        ],
+        "related_commands": [
+            "md5sum",
+            "sha1sum"
+        ],
+        "best_practices": [
+            "Use for high-security file verification",
+            "Compare with known good checksums for authenticity"
+        ]
+    },
+    {
+        "name": "base64",
+        "command": "base64 [options] file",
+        "description": "Encodes or decodes data in Base64 format.",
+        "section": "File & Search",
+        "output": "Displays Base64 encoded text or decodes input if -d is used.",
+        "common_options": {
+            "-d": "Decode the input"
+        },
+        "examples": [
+            "base64 file.txt",
+            "base64 -d encoded.txt"
+        ],
+        "related_commands": [
+            "xxd",
+            "openssl enc"
+        ],
+        "best_practices": [
+            "Verify that the encoded/decoded output meets expectations",
+            "Use in scripts for data obfuscation or safe transport"
+        ]
+    },
+    {
+        "name": "xxd",
+        "command": "xxd [options] file",
+        "description": "Creates a hexdump of a given file or converts a hexdump back to binary.",
+        "section": "File & Search",
+        "output": "Hexadecimal dump of the file contents or binary file when reversed.",
+        "common_options": {
+            "-r": "Reverse operation (convert hex dump to binary)"
+        },
+        "examples": [
+            "xxd file.txt",
+            "xxd -r hex.txt output.bin"
+        ],
+        "related_commands": [
+            "hexdump",
+            "od"
+        ],
+        "best_practices": [
+            "Use -r carefully to avoid corrupting binary data",
+            "Check the dump output before converting back"
+        ]
+    },
+    {
+        "name": "od",
+        "command": "od [options] file",
+        "description": "Displays file data in various numeric formats including octal and hexadecimal.",
+        "section": "File & Search",
+        "output": "Outputs file data in the specified numeric format.",
+        "common_options": {
+            "-x": "Display in hexadecimal"
+        },
+        "examples": [
+            "od -x file.txt"
+        ],
+        "related_commands": [
+            "hexdump",
+            "xxd"
+        ],
+        "best_practices": [
+            "Use for low-level file analysis",
+            "Combine with other tools to interpret output"
+        ]
+    },
+    {
+        "name": "hexdump",
+        "command": "hexdump [options] file",
+        "description": "Prints a hexadecimal, decimal, octal, or ASCII dump of a file's contents.",
+        "section": "File & Search",
+        "output": "A formatted dump of the file in hexadecimal and ASCII.",
+        "common_options": {
+            "-C": "Canonical hex+ASCII display"
+        },
+        "examples": [
+            "hexdump -C file.txt"
+        ],
+        "related_commands": [
+            "xxd",
+            "od"
+        ],
+        "best_practices": [
+            "Use for debugging binary files",
+            "Review both hex and ASCII columns to understand file structure"
+        ]
+    },
+    {
+        "name": "cut",
+        "command": "cut [options] file",
+        "description": "Removes sections from each line of files, useful for column extraction.",
+        "section": "File & Search",
+        "output": "Displays selected parts of each line from the file.",
+        "common_options": {
+            "-d": "Specify delimiter",
+            "-f": "Specify fields to extract"
+        },
+        "examples": [
+            "cut -d':' -f1 /etc/passwd"
+        ],
+        "related_commands": [
+            "awk",
+            "paste"
+        ],
+        "best_practices": [
+            "Ensure the correct delimiter is set",
+            "Test on sample data to verify field selection"
+        ]
+    },
+    {
+        "name": "paste",
+        "command": "paste [options] file1 file2",
+        "description": "Merges lines of files side-by-side.",
+        "section": "File & Search",
+        "output": "Outputs merged lines from the input files.",
+        "common_options": {
+            "-d": "Specify a delimiter for merging columns"
+        },
+        "examples": [
+            "paste file1.txt file2.txt",
+            "paste -d, file1.txt file2.txt"
+        ],
+        "related_commands": [
+            "cut",
+            "join"
+        ],
+        "best_practices": [
+            "Use to combine related data from multiple files",
+            "Ensure files have the same number of lines for proper alignment"
+        ]
+    },
+    {
+        "name": "sort",
+        "command": "sort [options] file",
+        "description": "Sorts the lines in a text file.",
+        "section": "File & Search",
+        "output": "Outputs the sorted file content.",
+        "common_options": {
+            "-r": "Reverse the sort order",
+            "-n": "Sort numerically"
+        },
+        "examples": [
+            "sort file.txt",
+            "sort -nr file.txt"
+        ],
+        "related_commands": [
+            "uniq",
+            "grep"
+        ],
+        "best_practices": [
+            "Pipe through sort for orderly output",
+            "Use numerical sort for files with numeric data"
+        ]
+    },
+    {
+        "name": "uniq",
+        "command": "uniq [options] file",
+        "description": "Removes duplicate adjacent lines from sorted files.",
+        "section": "File & Search",
+        "output": "Prints unique lines, optionally with counts.",
+        "common_options": {
+            "-c": "Prefix lines with the count of occurrences"
+        },
+        "examples": [
+            "sort file.txt | uniq",
+            "sort file.txt | uniq -c"
+        ],
+        "related_commands": [
+            "sort",
+            "grep"
+        ],
+        "best_practices": [
+            "Sort the file first to group duplicates",
+            "Use -c to analyze frequency of repeated lines"
+        ]
+    },
+    {
+        "name": "tr",
+        "command": "tr [options] set1 set2",
+        "description": "Translates or deletes characters from standard input.",
+        "section": "File & Search",
+        "output": "Outputs the transformed text.",
+        "common_options": {
+            "-d": "Delete characters in set1"
+        },
+        "examples": [
+            "echo 'hello' | tr 'a-z' 'A-Z'",
+            "echo 'hello' | tr -d 'l'"
+        ],
+        "related_commands": [
+            "sed",
+            "awk"
+        ],
+        "best_practices": [
+            "Use for simple character replacements",
+            "Test small inputs to verify transformation"
+        ]
+    },
+    {
+        "name": "perl",
+        "command": "perl [options] -e 'code'",
+        "description": "Executes a snippet of Perl code from the command line.",
+        "section": "System Information",
+        "output": "Displays the result of the executed code.",
+        "common_options": {
+            "-e": "Execute the provided Perl code"
+        },
+        "examples": [
+            "perl -e 'print \"Hello, World\\n\";'"
+        ],
+        "related_commands": [
+            "python",
+            "ruby"
+        ],
+        "best_practices": [
+            "Escape quotes properly when embedding code in the command line",
+            "Use for quick scripting tasks"
+        ]
+    },
+    {
+        "name": "python",
+        "command": "python [options] script.py",
+        "description": "Runs a Python script or starts an interactive session.",
+        "section": "System Information",
+        "output": "Outputs from the Python interpreter or script execution.",
+        "common_options": {
+            "-V": "Print the Python version"
+        },
+        "examples": [
+            "python script.py",
+            "python -V"
+        ],
+        "related_commands": [
+            "perl",
+            "ruby"
+        ],
+        "best_practices": [
+            "Use virtual environments to manage dependencies",
+            "Ensure compatibility with the intended Python version"
+        ]
+    },
+    {
+        "name": "ruby",
+        "command": "ruby [options] script.rb",
+        "description": "Executes a Ruby script.",
+        "section": "System Information",
+        "output": "Outputs produced by the Ruby interpreter.",
+        "common_options": {
+            "-v": "Display Ruby version"
+        },
+        "examples": [
+            "ruby script.rb",
+            "ruby -v"
+        ],
+        "related_commands": [
+            "python",
+            "perl"
+        ],
+        "best_practices": [
+            "Use gem to manage Ruby libraries",
+            "Keep Ruby updated for security and performance"
+        ]
+    },
+    {
+        "name": "node",
+        "command": "node [options] script.js",
+        "description": "Executes a Node.js script.",
+        "section": "System Information",
+        "output": "Outputs from the Node.js runtime.",
+        "common_options": {
+            "--version": "Print Node.js version"
+        },
+        "examples": [
+            "node app.js",
+            "node --version"
+        ],
+        "related_commands": [
+            "npm",
+            "nodejs"
+        ],
+        "best_practices": [
+            "Use package.json to manage dependencies",
+            "Run in production mode for better performance"
+        ]
+    },
+    {
+        "name": "npm",
+        "command": "npm [command] [options]",
+        "description": "Manages Node.js packages and dependencies.",
+        "section": "System Information",
+        "output": "Outputs results of package installation, updates, or removals.",
+        "common_options": {
+            "install": "Install a package",
+            "update": "Update installed packages"
+        },
+        "examples": [
+            "npm install express",
+            "npm update"
+        ],
+        "related_commands": [
+            "node",
+            "npx"
+        ],
+        "best_practices": [
+            "Use a package-lock.json for consistency",
+            "Regularly update dependencies to secure versions"
+        ]
+    },
+    {
+        "name": "docker",
+        "command": "docker [command] [options]",
+        "description": "Manages Docker containers, images, and other resources.",
+        "section": "System Information",
+        "output": "Displays container status, logs, and image information.",
+        "common_options": {
+            "run": "Run a new container",
+            "ps": "List running containers"
+        },
+        "examples": [
+            "docker run hello-world",
+            "docker ps"
+        ],
+        "related_commands": [
+            "docker-compose",
+            "kubectl"
+        ],
+        "best_practices": [
+            "Use official images when possible",
+            "Keep Docker updated to secure your container environment"
+        ]
+    },
+    {
+        "name": "docker-compose",
+        "command": "docker-compose [command] [options]",
+        "description": "Manages multi-container Docker applications using a YAML file.",
+        "section": "System Information",
+        "output": "Starts, stops, or displays the status of defined services.",
+        "common_options": {
+            "up": "Start and run containers",
+            "down": "Stop and remove containers"
+        },
+        "examples": [
+            "docker-compose up",
+            "docker-compose down"
+        ],
+        "related_commands": [
+            "docker",
+            "kubectl"
+        ],
+        "best_practices": [
+            "Maintain your docker-compose.yml in version control",
+            "Use service scaling for load management"
+        ]
+    },
+    {
+        "name": "kubectl",
+        "command": "kubectl [command] [options]",
+        "description": "Manages Kubernetes clusters and resources.",
+        "section": "System Information",
+        "output": "Displays Kubernetes resource information such as pods and deployments.",
+        "common_options": {
+            "get": "List resources",
+            "describe": "Show details of a resource"
+        },
+        "examples": [
+            "kubectl get pods",
+            "kubectl describe pod mypod"
+        ],
+        "related_commands": [
+            "docker",
+            "helm"
+        ],
+        "best_practices": [
+            "Keep your kubeconfig file secure",
+            "Use namespaces to organize cluster resources"
+        ]
+    },
+    {
+        "name": "systemctl",
+        "command": "systemctl [command] [service]",
+        "description": "Controls the systemd system and service manager.",
+        "section": "System Information",
+        "output": "Provides service status, start, stop, or restart information.",
+        "common_options": {
+            "status": "Show the status of a service",
+            "restart": "Restart a service"
+        },
+        "examples": [
+            "systemctl status sshd",
+            "systemctl restart nginx"
+        ],
+        "related_commands": [
+            "service",
+            "journalctl"
+        ],
+        "best_practices": [
+            "Use on systemd-based systems only",
+            "Check logs with journalctl after service restarts"
+        ]
+    },
+    {
+        "name": "journalctl",
+        "command": "journalctl [options]",
+        "description": "Queries and displays logs from the systemd journal.",
+        "section": "System Information",
+        "output": "Outputs system logs for services managed by systemd.",
+        "common_options": {
+            "-u": "Filter logs by service unit",
+            "-b": "Show logs from the current boot"
+        },
+        "examples": [
+            "journalctl -u sshd",
+            "journalctl -b"
+        ],
+        "related_commands": [
+            "systemctl",
+            "dmesg"
+        ],
+        "best_practices": [
+            "Use filters to narrow down log output",
+            "Combine with grep to search for specific issues"
+        ]
+    },
+    {
+        "name": "service",
+        "command": "service [service] [action]",
+        "description": "Manages system services on SysVinit-based systems.",
+        "section": "System Information",
+        "output": "Displays the status or executes an action on a service.",
+        "common_options": {},
+        "examples": [
+            "service sshd status",
+            "service nginx restart"
+        ],
+        "related_commands": [
+            "systemctl"
+        ],
+        "best_practices": [
+            "Use on older systems without systemd",
+            "Ensure correct service names are used"
+        ]
+    },
+    {
+        "name": "crontab",
+        "command": "crontab [options]",
+        "description": "Edits or displays the user’s cron table for scheduling recurring tasks.",
+        "section": "System Information",
+        "output": "Lists scheduled cron jobs for the user.",
+        "common_options": {
+            "-l": "List the current cron jobs",
+            "-e": "Edit the cron table"
+        },
+        "examples": [
+            "crontab -l",
+            "crontab -e"
+        ],
+        "related_commands": [
+            "at",
+            "batch"
+        ],
+        "best_practices": [
+            "Redirect output to log files for troubleshooting",
+            "Test commands manually before scheduling them"
+        ]
+    },
+    {
+        "name": "at",
+        "command": "at [time]",
+        "description": "Schedules a command to be executed once at a specified time.",
+        "section": "System Information",
+        "output": "Schedules the command; no output on success.",
+        "common_options": {
+            "-f": "Use a file containing the commands to execute"
+        },
+        "examples": [
+            "echo 'shutdown -h now' | at 23:00",
+            "at -f job.txt 09:00"
+        ],
+        "related_commands": [
+            "crontab",
+            "batch"
+        ],
+        "best_practices": [
+            "Use absolute paths in scheduled commands",
+            "Verify the time format before scheduling"
+        ]
+    },
+    {
+        "name": "batch",
+        "command": "batch",
+        "description": "Schedules commands to be executed when system load permits.",
+        "section": "System Information",
+        "output": "Executes queued commands during idle periods.",
+        "common_options": {},
+        "examples": [
+            "echo 'backup.sh' | batch"
+        ],
+        "related_commands": [
+            "at",
+            "crontab"
+        ],
+        "best_practices": [
+            "Use for non-critical background tasks",
+            "Monitor system load to verify execution"
+        ]
+    },
+    {
+        "name": "logrotate",
+        "command": "logrotate [options] config",
+        "description": "Rotates, compresses, and mails system log files as specified in its configuration.",
+        "section": "File Management",
+        "output": "Rotates log files and outputs a summary of actions taken.",
+        "common_options": {
+            "-f": "Force log rotation",
+            "-d": "Debug mode (do not perform rotation)"
+        },
+        "examples": [
+            "logrotate -f /etc/logrotate.conf",
+            "logrotate -d /etc/logrotate.conf"
+        ],
+        "related_commands": [
+            "cron",
+            "rsyslog"
+        ],
+        "best_practices": [
+            "Review configuration files carefully",
+            "Schedule log rotation during low activity periods"
+        ]
+    },
+    {
+        "name": "nft",
+        "command": "nft [command] [options]",
+        "description": "Manages firewall rules using the nftables framework.",
+        "section": "Networking",
+        "output": "Displays or modifies the nftables ruleset.",
+        "common_options": {
+            "list": "List the current ruleset",
+            "add": "Add a new rule"
+        },
+        "examples": [
+            "nft list ruleset",
+            "nft add rule ip filter input tcp dport 22 accept"
+        ],
+        "related_commands": [
+            "iptables",
+            "ip6tables"
+        ],
+        "best_practices": [
+            "Backup current rules before making changes",
+            "Test new rules in a controlled environment"
+        ]
+    },
+    {
+        "name": "ip6tables",
+        "command": "ip6tables [options]",
+        "description": "Manages IPv6 firewall rules.",
+        "section": "Networking",
+        "output": "Lists IPv6 firewall rules and settings.",
+        "common_options": {
+            "-L": "List the rules",
+            "-F": "Flush (remove) all rules"
+        },
+        "examples": [
+            "ip6tables -L",
+            "ip6tables -F"
+        ],
+        "related_commands": [
+            "iptables",
+            "nft"
+        ],
+        "best_practices": [
+            "Use with caution to prevent network access issues",
+            "Regularly review and update firewall configurations"
+        ]
+    },
+    {
+        "name": "ufw",
+        "command": "ufw [command] [options]",
+        "description": "Uncomplicated Firewall: a user-friendly front end for managing firewall rules.",
+        "section": "Networking",
+        "output": "Enables, disables, or displays the status of firewall rules.",
+        "common_options": {
+            "enable": "Enable the firewall",
+            "status": "Show current status"
+        },
+        "examples": [
+            "ufw enable",
+            "ufw status"
+        ],
+        "related_commands": [
+            "iptables",
+            "nft"
+        ],
+        "best_practices": [
+            "Always test rules to avoid accidentally blocking access",
+            "Document configuration changes for future reference"
+        ]
+    },
+    {
+        "name": "fail2ban-client",
+        "command": "fail2ban-client [command]",
+        "description": "Interacts with the Fail2Ban daemon to manage banned IP addresses based on log analysis.",
+        "section": "Networking",
+        "output": "Displays status or modifies settings for Fail2Ban jails.",
+        "common_options": {
+            "status": "Display the current status of jails",
+            "set": "Modify jail settings"
+        },
+        "examples": [
+            "fail2ban-client status",
+            "fail2ban-client set sshd banip 192.168.1.100"
+        ],
+        "related_commands": [
+            "ufw",
+            "iptables"
+        ],
+        "best_practices": [
+            "Regularly monitor logs to adjust filters as needed",
+            "Keep Fail2Ban updated to protect against new threats"
+        ]
+    },
+    {
+        "name": "tree",
+        "command": "tree [options] [directory]",
+        "description": "Recursively lists directory contents in a tree-like format.",
+        "section": "File Management",
+        "output": "Visual hierarchical representation of directories and files.",
+        "common_options": {
+            "-L": "Limit the depth of the directory tree",
+            "-a": "Include hidden files"
+        },
+        "examples": [
+            "tree",
+            "tree -L 2 /path/to/directory"
+        ],
+        "related_commands": [
+            "ls",
+            "find"
+        ],
+        "best_practices": [
+            "Use for a quick overview of directory structure",
+            "Limit depth for very large directories to avoid clutter"
+        ]
+    },
+    {
+        "name": "xargs",
+        "command": "xargs [options]",
+        "description": "Builds and executes command lines from standard input.",
+        "section": "File & Search",
+        "output": "Executes the constructed command with input arguments.",
+        "common_options": {
+            "-n": "Limit the number of arguments per command line"
+        },
+        "examples": [
+            "find . -name '*.txt' | xargs grep 'pattern'",
+            "echo 'file1 file2' | xargs cat"
+        ],
+        "related_commands": [
+            "find",
+            "grep"
+        ],
+        "best_practices": [
+            "Test with echo to avoid unintended execution",
+            "Use when the argument list is too long for a single command"
+        ]
+    },
+    {
+        "name": "alias",
+        "command": "alias name='command'",
+        "description": "Creates a shortcut for a longer command.",
+        "section": "System Information",
+        "output": "Defines an alias for the current shell session (no direct output).",
+        "common_options": {},
+        "examples": [
+            "alias ll='ls -la'",
+            "alias gs='git status'"
+        ],
+        "related_commands": [
+            "export"
+        ],
+        "best_practices": [
+            "Add frequently used commands as aliases in your shell profile",
+            "Choose intuitive names to remember the alias"
+        ]
+    },
+    {
+        "name": "export",
+        "command": "export VARIABLE=value",
+        "description": "Sets an environment variable in the current shell session.",
+        "section": "System Information",
+        "output": "No output on success; the variable is set for the session.",
+        "common_options": {},
+        "examples": [
+            "export PATH=$PATH:/new/path",
+            "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk"
+        ],
+        "related_commands": [
+            "printenv",
+            "env"
+        ],
+        "best_practices": [
+            "Place important exports in your shell's configuration file for persistence",
+            "Verify changes using 'echo' or 'env'"
+        ]
+    },
+    {
+        "name": "history",
+        "command": "history",
+        "description": "Displays the command history of the current shell session.",
+        "section": "System Information",
+        "output": "A numbered list of previously executed commands.",
+        "common_options": {
+            "-c": "Clear the history list"
+        },
+        "examples": [
+            "history",
+            "history -c"
+        ],
+        "related_commands": [
+            "alias",
+            "export"
+        ],
+        "best_practices": [
+            "Review history to repeat or correct previous commands",
+            "Clear sensitive entries if necessary"
+        ]
+    },
+    {
+        "name": "clear",
+        "command": "clear",
+        "description": "Clears the terminal screen.",
+        "section": "System Information",
+        "output": "Clears the visible terminal output.",
+        "common_options": {},
+        "examples": [
+            "clear"
+        ],
+        "related_commands": [
+            "reset"
+        ],
+        "best_practices": [
+            "Use to declutter the terminal screen",
+            "Combine with history review for a fresh start"
+        ]
+    },
+    {
+        "name": "reset",
+        "command": "reset",
+        "description": "Resets the terminal by reinitializing its settings.",
+        "section": "System Information",
+        "output": "Restores terminal settings and clears the screen.",
+        "common_options": {},
+        "examples": [
+            "reset"
+        ],
+        "related_commands": [
+            "clear"
+        ],
+        "best_practices": [
+            "Use when terminal output becomes garbled",
+            "Note that it may clear the scrollback buffer"
+        ]
+    },
+    {
+        "name": "apropos",
+        "command": "apropos keyword",
+        "description": "Searches manual page names and descriptions for a given keyword.",
+        "section": "File & Search",
+        "output": "Lists matching manual page entries.",
+        "common_options": {},
+        "examples": [
+            "apropos network",
+            "apropos ssh"
+        ],
+        "related_commands": [
+            "man",
+            "whatis"
+        ],
+        "best_practices": [
+            "Use to quickly locate commands related to a topic",
+            "Combine with grep for more precise searches"
+        ]
+    },
+    {
+        "name": "info",
+        "command": "info command",
+        "description": "Displays hyperlinked, detailed documentation for a command.",
+        "section": "File & Search",
+        "output": "Comprehensive, navigable command documentation.",
+        "common_options": {},
+        "examples": [
+            "info ls",
+            "info coreutils"
+        ],
+        "related_commands": [
+            "man",
+            "apropos"
+        ],
+        "best_practices": [
+            "Navigate using the keyboard shortcuts provided",
+            "Use for in-depth command usage details"
+        ]
+    },
+    {
+        "name": "which",
+        "command": "which command",
+        "description": "Shows the full path of the command executable that would be run.",
+        "section": "File & Search",
+        "output": "Displays the absolute path to the executable.",
+        "common_options": {},
+        "examples": [
+            "which ls",
+            "which python"
+        ],
+        "related_commands": [
+            "whereis",
+            "type"
+        ],
+        "best_practices": [
+            "Use to verify command locations in your PATH",
+            "Helpful for debugging path issues"
+        ]
+    },
+    {
+        "name": "whereis",
+        "command": "whereis command",
+        "description": "Locates the binary, source, and manual pages for a command.",
+        "section": "File & Search",
+        "output": "Outputs paths for the binary, source, and docs.",
+        "common_options": {},
+        "examples": [
+            "whereis gcc",
+            "whereis man"
+        ],
+        "related_commands": [
+            "which",
+            "locate"
+        ],
+        "best_practices": [
+            "Use to find all related files for a command",
+            "Cross-check with 'which' for executables"
+        ]
+    },
+    {
+        "name": "patch",
+        "command": "patch [options] originalfile patchfile",
+        "description": "Applies a patch (diff file) to an original file to update its contents.",
+        "section": "File Management",
+        "output": "Updates the original file with the differences provided in the patch.",
+        "common_options": {
+            "-p": "Strip the given number of leading slashes from file paths in the patch file"
+        },
+        "examples": [
+            "patch -p1 < fix.diff"
+        ],
+        "related_commands": [
+            "diff",
+            "cmp"
+        ],
+        "best_practices": [
+            "Always back up the original file before patching",
+            "Review the patch file carefully for accuracy"
+        ]
+    },
+    {
+        "name": "make",
+        "command": "make [options]",
+        "description": "Automates the build process using a Makefile.",
+        "section": "File Management",
+        "output": "Compiles source code and produces executables or libraries.",
+        "common_options": {
+            "-j": "Run multiple jobs in parallel"
+        },
+        "examples": [
+            "make",
+            "make -j4"
+        ],
+        "related_commands": [
+            "gcc",
+            "g++"
+        ],
+        "best_practices": [
+            "Ensure a proper Makefile is present in the directory",
+            "Use parallel jobs for faster builds"
+        ]
+    },
+    {
+        "name": "gcc",
+        "command": "gcc [options] file.c -o output",
+        "description": "Compiles C source code into an executable.",
+        "section": "File Management",
+        "output": "Generates an executable from the source file.",
+        "common_options": {
+            "-Wall": "Enable all compiler warnings",
+            "-O2": "Optimize the code"
+        },
+        "examples": [
+            "gcc -Wall -O2 program.c -o program"
+        ],
+        "related_commands": [
+            "g++",
+            "make"
+        ],
+        "best_practices": [
+            "Compile with warnings enabled to catch potential issues",
+            "Optimize code for production builds"
+        ]
+    },
+    {
+        "name": "g++",
+        "command": "g++ [options] file.cpp -o output",
+        "description": "Compiles C++ source code into an executable.",
+        "section": "File Management",
+        "output": "Produces an executable from C++ code.",
+        "common_options": {
+            "-Wall": "Enable all compiler warnings",
+            "-O2": "Optimize the code"
+        },
+        "examples": [
+            "g++ -Wall -O2 program.cpp -o program"
+        ],
+        "related_commands": [
+            "gcc",
+            "make"
+        ],
+        "best_practices": [
+            "Specify the appropriate C++ standard if needed (e.g., -std=c++11)",
+            "Review compiler warnings to improve code quality"
+        ]
+    },
+    {
+        "name": "ldd",
+        "command": "ldd executable",
+        "description": "Prints the shared library dependencies of an executable.",
+        "section": "File & Search",
+        "output": "Lists all shared libraries required by the executable.",
+        "common_options": {},
+        "examples": [
+            "ldd /bin/ls"
+        ],
+        "related_commands": [
+            "objdump",
+            "readelf"
+        ],
+        "best_practices": [
+            "Use to diagnose missing library issues",
+            "Compare dependencies between different versions"
+        ]
+    },
+    {
+        "name": "csplit",
+        "command": "csplit [options] file pattern",
+        "description": "Splits a file into pieces based on context lines matching a pattern.",
+        "section": "File Management",
+        "output": "Creates multiple files with numbered suffixes.",
+        "common_options": {
+            "-k": "Keep output files even if errors occur"
+        },
+        "examples": [
+            "csplit file.txt /Chapter/ {*}"
+        ],
+        "related_commands": [
+            "split",
+            "cat"
+        ],
+        "best_practices": [
+            "Define clear patterns to split the file correctly",
+            "Review output filenames to ensure correct segmentation"
+        ]
+    },
+    {
+        "name": "nohup",
+        "command": "nohup command [args] &",
+        "description": "Runs a command immune to hangups, allowing it to continue running after logout.",
+        "section": "Process Management",
+        "output": "Starts the command and writes output to nohup.out by default.",
+        "common_options": {},
+        "examples": [
+            "nohup long_running_command &"
+        ],
+        "related_commands": [
+            "screen",
+            "tmux"
+        ],
+        "best_practices": [
+            "Redirect output to a specific file for clarity",
+            "Verify that the process remains running after logout"
+        ]
+    },
+    {
+        "name": "screen",
+        "command": "screen [options]",
+        "description": "Creates a detachable terminal session for managing multiple shells.",
+        "section": "Process Management",
+        "output": "Starts a new screen session; no direct output.",
+        "common_options": {
+            "-S": "Name the screen session"
+        },
+        "examples": [
+            "screen -S mysession"
+        ],
+        "related_commands": [
+            "tmux",
+            "nohup"
+        ],
+        "best_practices": [
+            "Detach sessions with Ctrl-A then D",
+            "Reattach using 'screen -r' with the session name"
+        ]
+    },
+    {
+        "name": "tmux",
+        "command": "tmux [options]",
+        "description": "A terminal multiplexer that allows multiple sessions within one terminal window.",
+        "section": "Process Management",
+        "output": "Starts a tmux session with multiple windows and panes.",
+        "common_options": {
+            "new": "Create a new session"
+        },
+        "examples": [
+            "tmux new -s mysession",
+            "tmux attach -t mysession"
+        ],
+        "related_commands": [
+            "screen",
+            "nohup"
+        ],
+        "best_practices": [
+            "Use descriptive session names for easy management",
+            "Learn key bindings to maximize efficiency"
+        ]
+    },
+    {
+        "name": "chvt",
+        "command": "chvt N",
+        "description": "Changes the active virtual terminal to the specified number.",
+        "section": "System Information",
+        "output": "Switches the active VT; no output on success.",
+        "common_options": {},
+        "examples": [
+            "chvt 2"
+        ],
+        "related_commands": [
+            "setterm"
+        ],
+        "best_practices": [
+            "Ensure you know which terminal you are switching to",
+            "Use for troubleshooting graphical interface issues"
+        ]
+    },
+    {
+        "name": "setterm",
+        "command": "setterm [options]",
+        "description": "Sets terminal attributes such as brightness or blanking timeout.",
+        "section": "System Information",
+        "output": "Modifies terminal settings without producing output.",
+        "common_options": {
+            "--blank": "Set terminal blanking timeout"
+        },
+        "examples": [
+            "setterm --blank 10"
+        ],
+        "related_commands": [
+            "chvt"
+        ],
+        "best_practices": [
+            "Use in scripts to control terminal behavior",
+            "Test changes interactively before system-wide deployment"
+        ]
+    },
+    {
+        "name": "users",
+        "command": "users",
+        "description": "Displays a list of usernames of users currently logged in.",
+        "section": "System Information",
+        "output": "A space-separated list of logged-in user names.",
+        "common_options": {},
+        "examples": [
+            "users"
+        ],
+        "related_commands": [
+            "w",
+            "who"
+        ],
+        "best_practices": [
+            "Use to quickly check active user sessions",
+            "Combine with 'who' for detailed session info"
+        ]
+    },
+    {
+        "name": "id",
+        "command": "id [username]",
+        "description": "Displays the user and group identity information for the current or specified user.",
+        "section": "System Information",
+        "output": "Shows user ID, group ID, and group memberships.",
+        "common_options": {},
+        "examples": [
+            "id",
+            "id user"
+        ],
+        "related_commands": [
+            "whoami",
+            "users"
+        ],
+        "best_practices": [
+            "Use for verifying current user permissions",
+            "Helpful in scripts to check user identity"
+        ]
+    },
+    {
+        "name": "whoami",
+        "command": "whoami",
+        "description": "Prints the effective username of the current user.",
+        "section": "System Information",
+        "output": "Outputs the current username.",
+        "common_options": {},
+        "examples": [
+            "whoami"
+        ],
+        "related_commands": [
+            "id",
+            "users"
+        ],
+        "best_practices": [
+            "Use for quick verification of user identity",
+            "Useful in scripts to check execution context"
+        ]
+    },
+    {
+        "name": "last",
+        "command": "last [options]",
+        "description": "Displays a list of recent user logins.",
+        "section": "System Information",
+        "output": "Lists user login sessions with timestamps.",
+        "common_options": {
+            "-n": "Limit the number of entries displayed"
+        },
+        "examples": [
+            "last",
+            "last -n 10"
+        ],
+        "related_commands": [
+            "w",
+            "who"
+        ],
+        "best_practices": [
+            "Use to monitor user activity",
+            "Combine with grep to filter specific user sessions"
+        ]
+    },
+    {
+        "name": "lastb",
+        "command": "lastb [options]",
+        "description": "Shows a list of failed login attempts.",
+        "section": "System Information",
+        "output": "Displays records of unsuccessful login attempts.",
+        "common_options": {
+            "-n": "Limit the number of entries"
+        },
+        "examples": [
+            "lastb",
+            "lastb -n 5"
+        ],
+        "related_commands": [
+            "last",
+            "faillog"
+        ],
+        "best_practices": [
+            "Review failed logins to identify potential security issues",
+            "Regularly monitor and investigate anomalies"
+        ]
+    },
+    {
+        "name": "w",
+        "command": "w",
+        "description": "Displays information about currently logged-in users and their activity.",
+        "section": "System Information",
+        "output": "Lists user sessions with details such as login time and running processes.",
+        "common_options": {},
+        "examples": [
+            "w"
+        ],
+        "related_commands": [
+            "who",
+            "users"
+        ],
+        "best_practices": [
+            "Use for a quick snapshot of system usage",
+            "Compare with 'last' for historical user activity"
+        ]
+    },
+    {
+        "name": "vmstat",
+        "command": "vmstat [options] [delay [count]]",
+        "description": "Reports virtual memory statistics, process activity, and CPU utilization.",
+        "section": "System Information",
+        "output": "Summarized system performance statistics.",
+        "common_options": {},
+        "examples": [
+            "vmstat 2 5"
+        ],
+        "related_commands": [
+            "iostat",
+            "mpstat"
+        ],
+        "best_practices": [
+            "Run for a period to identify performance trends",
+            "Combine with other monitoring tools for comprehensive analysis"
+        ]
+    },
+    {
+        "name": "mpstat",
+        "command": "mpstat [options] [delay [count]]",
+        "description": "Displays per-processor statistics to help analyze CPU performance.",
+        "section": "System Information",
+        "output": "Detailed CPU usage statistics for each core.",
+        "common_options": {},
+        "examples": [
+            "mpstat 2 5"
+        ],
+        "related_commands": [
+            "vmstat",
+            "iostat"
+        ],
+        "best_practices": [
+            "Monitor over time for multi-core performance insights",
+            "Use alongside vmstat for a full system overview"
+        ]
+    },
+    {
+        "name": "sar",
+        "command": "sar [options] [interval [count]]",
+        "description": "Collects, reports, or saves system activity information.",
+        "section": "System Information",
+        "output": "Provides historical performance data such as CPU and memory usage.",
+        "common_options": {
+            "-u": "Report CPU utilization"
+        },
+        "examples": [
+            "sar -u 2 5"
+        ],
+        "related_commands": [
+            "vmstat",
+            "mpstat"
+        ],
+        "best_practices": [
+            "Ensure the sysstat package is installed",
+            "Collect data over a significant time interval for analysis"
+        ]
+    },
+    {
+        "name": "nice",
+        "command": "nice [options] command",
+        "description": "Runs a command with a modified scheduling priority.",
+        "section": "Process Management",
+        "output": "Starts the command with adjusted CPU priority; no direct output.",
+        "common_options": {
+            "-n": "Specify the nice value (priority increment)"
+        },
+        "examples": [
+            "nice -n 10 myapp"
+        ],
+        "related_commands": [
+            "renice",
+            "ps"
+        ],
+        "best_practices": [
+            "Use to lower the priority of background tasks",
+            "Monitor performance to ensure desired behavior"
+        ]
+    },
+    {
+        "name": "xclip",
+        "command": "xclip [options]",
+        "description": "Interacts with the X clipboard for copying and pasting text from the command line.",
+        "section": "System Information",
+        "output": "Copies input to the X clipboard or outputs clipboard contents.",
+        "common_options": {
+            "-selection": "Specify which clipboard to use (primary, secondary, clipboard)"
+        },
+        "examples": [
+            "echo 'Hello' | xclip -selection clipboard",
+            "xclip -o -selection clipboard"
+        ],
+        "related_commands": [
+            "xsel"
+        ],
+        "best_practices": [
+            "Ensure an X server is running",
+            "Use in scripts to automate clipboard tasks"
+        ]
+    },
+    {
+        "name": "xsel",
+        "command": "xsel [options]",
+        "description": "Manipulates the X selection (clipboard) from the command line.",
+        "section": "System Information",
+        "output": "Outputs or modifies the contents of the X clipboard.",
+        "common_options": {
+            "--clipboard": "Operate on the clipboard selection"
+        },
+        "examples": [
+            "xsel --clipboard --output",
+            "echo 'Data' | xsel --clipboard"
+        ],
+        "related_commands": [
+            "xclip"
+        ],
+        "best_practices": [
+            "Use to script clipboard operations on X",
+            "Verify the clipboard content with the --output option"
+        ]
+    },
+    {
+        "name": "wmctrl",
+        "command": "wmctrl [options]",
+        "description": "Interacts with an X Window Manager to control windows and workspaces.",
+        "section": "System Information",
+        "output": "Lists or manipulates open windows.",
+        "common_options": {
+            "-l": "List all open windows"
+        },
+        "examples": [
+            "wmctrl -l",
+            "wmctrl -a 'Terminal'"
+        ],
+        "related_commands": [
+            "xrandr",
+            "setterm"
+        ],
+        "best_practices": [
+            "Use for automating window management tasks",
+            "Ensure compatibility with your window manager"
+        ]
+    },
+    {
+        "name": "xrandr",
+        "command": "xrandr [options]",
+        "description": "Configures and queries screen display settings such as resolution and orientation.",
+        "section": "System Information",
+        "output": "Displays current screen configuration and available modes.",
+        "common_options": {
+            "--output": "Select a specific display output",
+            "--mode": "Set a specific display resolution"
+        },
+        "examples": [
+            "xrandr",
+            "xrandr --output HDMI1 --mode 1920x1080"
+        ],
+        "related_commands": [
+            "wmctrl",
+            "setterm"
+        ],
+        "best_practices": [
+            "Use to configure multi-monitor setups",
+            "Verify available display modes before setting a new resolution"
+        ]
+    },
+    {
+        "name": "curlftpfs",
+        "command": "curlftpfs [options] ftp://[user@]host /mount/point",
+        "description": "Mounts an FTP host as a local filesystem using FUSE.",
+        "section": "File Management",
+        "output": "Mounts the remote FTP directory locally; no output on success.",
+        "common_options": {
+            "-o": "Specify FUSE mount options (e.g., allow_other)"
+        },
+        "examples": [
+            "curlftpfs ftp://user:pass@ftp.example.com /mnt/ftp"
+        ],
+        "related_commands": [
+            "sshfs",
+            "mount"
+        ],
+        "best_practices": [
+            "Ensure FUSE is installed and configured properly",
+            "Unmount cleanly to avoid data corruption"
+        ]
+    },
+    {
+        "name": "lsof",
+        "command": "lsof [options]",
+        "description": "Lists open files and the processes that opened them.",
+        "section": "Process Management",
+        "output": "Displays a list of files currently open by processes.",
+        "common_options": {
+            "-i": "Filter by network files",
+            "-n": "Suppress hostname resolution"
+        },
+        "examples": [
+            "lsof -i",
+            "lsof -nP | grep ':80'"
+        ],
+        "related_commands": [
+            "netstat",
+            "ss"
+        ],
+        "best_practices": [
+            "Run as root for complete information",
+            "Use specific filters to narrow down results"
+        ]
+    },
+    {
+        "name": "nc",
+        "command": "nc [options] host port",
+        "description": "Netcat: a versatile networking utility for reading and writing data over network connections.",
+        "section": "Networking",
+        "output": "Can create a raw network connection; output depends on usage.",
+        "common_options": {
+            "-l": "Listen mode for inbound connections",
+            "-v": "Verbose mode"
+        },
+        "examples": [
+            "nc -l 1234",
+            "nc example.com 80"
+        ],
+        "related_commands": [
+            "nmap",
+            "telnet"
+        ],
+        "best_practices": [
+            "Use for debugging network connectivity",
+            "Be cautious when opening listening ports"
+        ]
+    },
+    {
+        "name": "btop",
+        "command": "btop",
+        "description": "An interactive resource monitor that displays CPU, memory, disk, and network usage in real time with a modern, visually appealing interface.",
+        "section": "System Information",
+        "output": "An interactive dashboard with graphs and usage statistics for system resources.",
+        "common_options": {
+            "--help": "Display help information",
+            "-d": "Run in daemon mode"
+        },
+        "examples": [
+            "btop",
+            "btop --help"
+        ],
+        "related_commands": [
+            "htop",
+            "top",
+            "glances"
+        ],
+        "best_practices": [
+            "Run interactively to monitor system performance in real time",
+            "Use --help to explore advanced options and settings"
+        ]
+    },
+    {
+        "name": "nload",
+        "command": "nload",
+        "description": "A console application that monitors incoming and outgoing network traffic in real time, displaying usage graphs for each network interface.",
+        "section": "Networking",
+        "output": "Real-time network usage graphs and numerical statistics per interface.",
+        "common_options": {
+            "-u": "Set update interval in seconds",
+            "-m": "Display rates in MB/s"
+        },
+        "examples": [
+            "nload",
+            "nload -u 2"
+        ],
+        "related_commands": [
+            "iftop",
+            "ip -s link"
+        ],
+        "best_practices": [
+            "Run with sufficient privileges to access network interface data",
+            "Combine with other monitoring tools for comprehensive network analysis"
+        ]
+    },
+    {
+        "name": "apt",
+        "command": "apt [options] command",
+        "description": "A high-level package management command for Debian-based systems, used to install, remove, update, and manage packages.",
+        "section": "System Information",
+        "output": "Outputs package management details, including updated package lists, installation logs, and removal summaries.",
+        "common_options": {
+            "update": "Update package lists",
+            "install": "Install specified packages",
+            "remove": "Remove specified packages"
+        },
+        "examples": [
+            "sudo apt update",
+            "sudo apt install vim",
+            "sudo apt remove package-name"
+        ],
+        "related_commands": [
+            "apt-get",
+            "dpkg"
+        ],
+        "best_practices": [
+            "Always update package lists before installing new software",
+            "Review package dependencies and potential conflicts before removal"
+        ]
+    },
+    {
+        "name": "yum",
+        "command": "yum [options] command",
+        "description": "A package management utility for RPM-based distributions used to install, update, and remove packages.",
+        "section": "System Information",
+        "output": "Displays logs of package installations, updates, or removals along with dependency information.",
+        "common_options": {
+            "install": "Install specified packages",
+            "update": "Update all installed packages",
+            "remove": "Remove specified packages"
+        },
+        "examples": [
+            "sudo yum update",
+            "sudo yum install httpd",
+            "sudo yum remove package-name"
+        ],
+        "related_commands": [
+            "dnf",
+            "rpm"
+        ],
+        "best_practices": [
+            "Run regular updates to keep the system secure",
+            "Check for dependency conflicts before removing packages"
+        ]
+    },
+    {
+        "name": "dnf",
+        "command": "dnf [options] command",
+        "description": "A modern package manager for RPM-based systems (used in Fedora and similar distributions) that replaces yum.",
+        "section": "System Information",
+        "output": "Provides output for package installation, updates, and removals along with dependency resolution details.",
+        "common_options": {
+            "install": "Install specified packages",
+            "update": "Update installed packages",
+            "remove": "Remove specified packages"
+        },
+        "examples": [
+            "sudo dnf update",
+            "sudo dnf install vim",
+            "sudo dnf remove package-name"
+        ],
+        "related_commands": [
+            "yum",
+            "rpm"
+        ],
+        "best_practices": [
+            "Use for efficient package management on supported distributions",
+            "Verify package compatibility before removal or upgrades"
+        ]
+    },
+    {
+        "name": "pacman",
+        "command": "pacman [options] command",
+        "description": "The package manager for Arch Linux and derivatives, used to install, update, and remove packages.",
+        "section": "System Information",
+        "output": "Displays package management details such as package installation, updates, and removal statuses.",
+        "common_options": {
+            "-S": "Synchronize packages (install/update)",
+            "-R": "Remove packages",
+            "-Ss": "Search for packages"
+        },
+        "examples": [
+            "sudo pacman -Syu",
+            "sudo pacman -Ss package-name",
+            "sudo pacman -R package-name"
+        ],
+        "related_commands": [
+            "yay",
+            "trizen"
+        ],
+        "best_practices": [
+            "Regularly update the system with pacman -Syu",
+            "Use AUR helpers for accessing additional packages if needed"
+        ]
+    },
+    {
+        "name": "zypper",
+        "command": "zypper [options] command",
+        "description": "A command-line package manager for openSUSE and SUSE Linux Enterprise, used to install, update, and remove software packages.",
+        "section": "System Information",
+        "output": "Outputs package management results, including repository refresh and installation details.",
+        "common_options": {
+            "install": "Install specified packages",
+            "update": "Update packages",
+            "remove": "Remove specified packages"
+        },
+        "examples": [
+            "sudo zypper refresh",
+            "sudo zypper install package-name",
+            "sudo zypper remove package-name"
+        ],
+        "related_commands": [
+            "rpm",
+            "yast"
+        ],
+        "best_practices": [
+            "Refresh repositories before installing new packages",
+            "Review package details before applying updates"
+        ]
+    },
+    {
+        "name": "snap",
+        "command": "snap [options] command",
+        "description": "Manages snap packages—containerized software packages that update automatically and work across a range of Linux distributions.",
+        "section": "System Information",
+        "output": "Displays installation, update, or removal results for snap packages.",
+        "common_options": {
+            "install": "Install a snap package",
+            "remove": "Remove a snap package",
+            "list": "List installed snap packages"
+        },
+        "examples": [
+            "sudo snap install vlc",
+            "sudo snap remove package-name",
+            "snap list"
+        ],
+        "related_commands": [
+            "apt",
+            "flatpak"
+        ],
+        "best_practices": [
+            "Use snap for applications that update automatically",
+            "Review snap store details to ensure you are installing the correct package"
+        ]
+    },
+    {
+        "name": "flatpak",
+        "command": "flatpak [options] command",
+        "description": "A system for building, distributing, and running sandboxed desktop applications on Linux.",
+        "section": "System Information",
+        "output": "Manages Flatpak packages including installation, updates, and removals, with sandbox isolation.",
+        "common_options": {
+            "install": "Install a Flatpak package",
+            "update": "Update installed Flatpak packages",
+            "remove": "Remove a Flatpak package"
+        },
+        "examples": [
+            "flatpak install flathub org.gimp.GIMP",
+            "flatpak update",
+            "flatpak uninstall package-name"
+        ],
+        "related_commands": [
+            "snap",
+            "apt"
+        ],
+        "best_practices": [
+            "Use Flatpak for isolated application installations",
+            "Keep Flatpak runtimes updated for improved security and compatibility"
+        ]
+    }
+]
