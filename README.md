@@ -17,4 +17,4 @@ npx http-server
 
 ## Screenshots
 
-![Screenshot 1](https://raw.githubusercontent.com/ItsLeon15/Linux-Cheat-Sheet/main/screenshots/screenshot-1.png)
+![Screenshot 1](https://raw.githubusercontent.com/ItsLeon15/Linux-Cheat-Sheet/refs/heads/main/screenshots/screenshot-1.png)
